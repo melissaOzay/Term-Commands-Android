@@ -1,12 +1,13 @@
 package com.example.termcommandsandroid.domain.entities.response
 
+
 import com.google.gson.annotations.SerializedName
 
-data class CategoriesResponse(
+data class AccountResponse(
     @SerializedName("code")
-    val code: String,
+    val code: Int,
     @SerializedName("data")
-    val data: List<CategoriesList>,
+    val data: AccountsList,
     @SerializedName("error")
-    val error: String,
+    val error: String
 )

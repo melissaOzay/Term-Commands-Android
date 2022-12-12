@@ -1,20 +1,20 @@
 package com.example.termcommandsandroid.api
 
-import com.example.termcommandsandroid.domain.entities.AccountsList
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.request.LoginRequest
-import com.example.termcommandsandroid.domain.entities.response.AccountsResponse
+import com.example.termcommandsandroid.domain.entities.response.AccountResponse
 import com.example.termcommandsandroid.domain.entities.response.CategoriesResponse
+import com.example.termcommandsandroid.domain.entities.response.CommandsResponse
 import retrofit2.Call
 import retrofit2.http.*
 
 interface RestApi {
     @POST("api/accounts")
-    fun postAccounts(@Body registerRequest: AccountsRequest): Call<List<AccountsResponse>>
+    fun postAccounts(@Body registerRequest: AccountsRequest): Call<AccountResponse>
 
     @GET("api/categories")
-    fun getCategories(): Call<List<CategoriesResponse>>
+    fun getCategories(): Call<CategoriesResponse>
 
-    @POST("/api/accounts/login")
-    fun login(@Body registerRequest: LoginRequest): Call<List<AccountsResponse>>
+    @GET("/api/commands")
+    fun getCommands(): Call<CommandsResponse>
 }

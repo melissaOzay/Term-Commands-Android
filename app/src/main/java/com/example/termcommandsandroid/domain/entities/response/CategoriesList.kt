@@ -1,4 +1,4 @@
-package com.example.termcommandsandroid.domain.entities
+package com.example.termcommandsandroid.domain.entities.response
 
 import com.google.gson.annotations.SerializedName
 

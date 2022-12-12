@@ -23,14 +23,5 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView3) as NavHostFragment
         navController = navHostFragment.navController
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.homeFragment) {
-
-                binding.bottomNavigation.visibility = View.VISIBLE
-            } else {
-
-                binding.bottomNavigation.visibility = View.GONE
-            }
-        }
     }
 }
