@@ -6,7 +6,9 @@ apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdk 33
-
+    buildFeatures {
+        viewBinding true
+    }
     defaultConfig {
         applicationId "com.example.termcommandsandroid"
         minSdk 21
@@ -43,7 +45,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
-    implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
+
     //navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'

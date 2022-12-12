@@ -22,6 +22,7 @@ class HomeVM @Inject constructor(
 
     val userListInfo = MutableLiveData<List<AccountsResponse>>()
     val categoriesListInfo = MutableLiveData<List<CategoriesResponse>>()
+    val failer = MutableLiveData<String>()
     val fail = MutableLiveData<String>()
 
     fun loadData(accountRequest: AccountsRequest) {
@@ -32,14 +33,14 @@ class HomeVM @Inject constructor(
             }
 
             override fun onFail(message: String) {
-                fail.postValue(message)
+                failer.postValue(message)
             }
 
         })
     }
 
-    fun getData(accountRequest: CategoriesResponse) {
-        categoriesUseCase.categories(accountRequest, object : CategoriesInterface {
+    fun getData() {
+        categoriesUseCase.categories(object : CategoriesInterface {
             override fun onSuccess(data: List<CategoriesResponse>) {
                 categoriesListInfo.postValue(data)
                 Log.e("hi melisa", "gel")
@@ -52,8 +53,5 @@ class HomeVM @Inject constructor(
         })
     }
 
-    fun loadDaa(accountRequest: AccountsList) {
-        userUseCase.local(accountRequest)
-    }
 
 }

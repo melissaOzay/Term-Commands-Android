@@ -14,36 +14,36 @@ import javax.inject.Inject
 
 class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): TermRepository {
 
-    override fun loadData(createGiftRequest: AccountsRequest, interfac: AccountInterface) {
+    override fun loadData(createGiftRequest: AccountsRequest, accountInterface: AccountInterface) {
         apiService.postAccounts(createGiftRequest).enqueue(object : Callback<List<AccountsResponse>> {
             override fun onResponse(
                 call: Call<List<AccountsResponse>>,
                 response: Response<List<AccountsResponse>>
             ) {
                 if (response.isSuccessful) {
-                    interfac.onSuccess(response.body()!!)
+                    accountInterface.onSuccess(response.body()!!)
                 }
             }
 
             override fun onFailure(call: Call<List<AccountsResponse>>, t: Throwable) {
-                interfac.onFail(t.localizedMessage!!)
+                accountInterface.onFail(t.localizedMessage!!)
             }
         })
     }
 
-    override fun categories(list: CategoriesResponse, accountInterface: CategoriesInterface) {
+    override fun categories(categoriesInterface: CategoriesInterface) {
         apiService.getCategories().enqueue(object : Callback<List<CategoriesResponse>> {
             override fun onResponse(
                 call: Call<List<CategoriesResponse>>,
                 response: Response<List<CategoriesResponse>>
             ) {
                 if (response.isSuccessful) {
-                    accountInterface.onSuccess(response.body()!!)
+                    categoriesInterface.onSuccess(response.body()!!)
                 }
             }
 
             override fun onFailure(call: Call<List<CategoriesResponse>>, t: Throwable) {
-                accountInterface.onFail(t.localizedMessage!!)
+                categoriesInterface.onFail(t.localizedMessage!!)
             }
         })
     }

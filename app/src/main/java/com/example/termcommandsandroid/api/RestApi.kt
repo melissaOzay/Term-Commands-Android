@@ -2,6 +2,7 @@ package com.example.termcommandsandroid.api
 
 import com.example.termcommandsandroid.domain.entities.AccountsList
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
+import com.example.termcommandsandroid.domain.entities.request.LoginRequest
 import com.example.termcommandsandroid.domain.entities.response.AccountsResponse
 import com.example.termcommandsandroid.domain.entities.response.CategoriesResponse
 import retrofit2.Call
@@ -13,4 +14,7 @@ interface RestApi {
 
     @GET("api/categories")
     fun getCategories(): Call<List<CategoriesResponse>>
+
+    @POST("/api/accounts/login")
+    fun login(@Body registerRequest: LoginRequest): Call<List<AccountsResponse>>
 }

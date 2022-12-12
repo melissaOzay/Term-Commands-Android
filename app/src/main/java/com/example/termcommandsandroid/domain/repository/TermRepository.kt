@@ -9,7 +9,7 @@ import com.example.termcommandsandroid.domain.entities.response.CategoriesRespon
 
 interface TermRepository {
     fun loadData(createGiftRequest:AccountsRequest,accountInterface:AccountInterface)
-    fun categories(list:CategoriesResponse,accountInterface:CategoriesInterface)
+    fun categories(accountInterface:CategoriesInterface)
 }
 
 

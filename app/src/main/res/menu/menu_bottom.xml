@@ -4,23 +4,14 @@
         <item
             android:id="@+id/home"
             android:icon="@drawable/ic_baseline_home_24"
-            app:cnb_backgroundColor="@color/black"
-            app:cnb_iconColor="@color/blue"
-            app:cnb_textColor="@color/grey"
             android:title="Home" />
         <item
             android:id="@+id/shop"
             android:icon="@drawable/ic_baseline_shopping_cart_24"
-            app:cnb_backgroundColor="@color/black"
-            app:cnb_iconColor="@color/blue"
-            app:cnb_textColor="@color/grey"
             android:title="My Commands" />
         <item
             android:id="@+id/others"
             android:icon="@drawable/ic_baseline_grid_view_24"
-            app:cnb_backgroundColor="@color/black"
-            app:cnb_iconColor="@color/blue"
-            app:cnb_textColor="@color/grey"
             android:title="Others" />
 
 </menu>

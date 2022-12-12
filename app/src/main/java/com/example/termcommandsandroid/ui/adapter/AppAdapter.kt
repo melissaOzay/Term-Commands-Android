@@ -16,7 +16,6 @@ class AppAdapter :RecyclerView.Adapter<AppAdapter.CompanyViewHolder>() {
 
     fun setData(userList: ArrayList<CategoriesResponse>) {
         this.userList = userList
-        userList.reverse()
         notifyDataSetChanged()
     }
 
