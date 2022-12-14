@@ -15,6 +15,6 @@ interface RestApi {
     @GET("api/categories")
     fun getCategories(): Call<CategoriesResponse>
 
-    @GET("/api/commands")
+    @GET("api/commands")
     fun getCommands(): Call<CommandsResponse>
 }

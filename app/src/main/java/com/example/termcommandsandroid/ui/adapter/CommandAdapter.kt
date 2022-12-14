@@ -13,6 +13,7 @@ class CommandAdapter : RecyclerView.Adapter<CommandAdapter.CompanyViewHolder>() 
 
     fun setData(commandsList: ArrayList<CommandsList>) {
         this.commandsList = commandsList
+        notifyDataSetChanged()
     }
 
     class CompanyViewHolder(view: View) : RecyclerView.ViewHolder(view) {

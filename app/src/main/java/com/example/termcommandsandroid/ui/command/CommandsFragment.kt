@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.termcommandsandroid.R
+import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.CategoriesList
 import com.example.termcommandsandroid.domain.entities.response.CommandsList
 import com.example.termcommandsandroid.ui.adapter.CommandAdapter
@@ -21,13 +22,17 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 @AndroidEntryPoint
 class CommandsFragment : Fragment() {
     private val viewModel: CommandVM by viewModels()
+
     private val recyclerViewAdapter by lazy {
         CommandAdapter()
     }
+
     lateinit var recyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         commends()
+
     }
 
     override fun onCreateView(
@@ -44,6 +49,12 @@ class CommandsFragment : Fragment() {
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.account(AccountsRequest("", ""))
+        viewModel.getCommands()
     }
 
     private fun commends() {
