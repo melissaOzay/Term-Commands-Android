@@ -10,7 +10,7 @@ import com.example.termcommandsandroid.R
 import com.example.termcommandsandroid.domain.entities.response.CategoriesList
 import kotlin.collections.ArrayList
 
-class AppAdapter :RecyclerView.Adapter<AppAdapter.CompanyViewHolder>() {
+class HomeAdapter :RecyclerView.Adapter<HomeAdapter.CompanyViewHolder>() {
     private var categoriesList = arrayListOf<CategoriesList>()
 
     fun setData(categoriesList:ArrayList<CategoriesList>) {

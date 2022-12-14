@@ -9,12 +9,12 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.termcommandsandroid.R
 import com.example.termcommandsandroid.domain.entities.response.CategoriesList
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
-import com.example.termcommandsandroid.ui.adapter.AppAdapter
+import com.example.termcommandsandroid.ui.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
     private val activityViewModel: HomeVM by viewModels()
 
     private val recyclerViewAdapter by lazy {
-        AppAdapter()
+        HomeAdapter()
     }
     lateinit var recyclerView: RecyclerView
 
@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         recyclerView = view.rv
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            GridLayoutManager(requireContext(), 2)
         return view
     }
 

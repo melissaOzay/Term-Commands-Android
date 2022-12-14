@@ -1,6 +1,7 @@
 package com.example.termcommandsandroid.repository
 
 import com.example.termcommandsandroid.AccountInterface
+import com.example.termcommandsandroid.CategoriesDetailInterface
 import com.example.termcommandsandroid.CategoriesInterface
 import com.example.termcommandsandroid.CommandsInterface
 import com.example.termcommandsandroid.api.RestApi
@@ -8,6 +9,7 @@ import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.AccountResponse
 import com.example.termcommandsandroid.domain.repository.TermRepository
 import com.example.termcommandsandroid.domain.entities.response.CategoriesResponse
+import com.example.termcommandsandroid.domain.entities.response.CategoryDeatilResponse
 import com.example.termcommandsandroid.domain.entities.response.CommandsResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,7 +34,6 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
             }
         })
     }
-
     override fun categories(categoriesInterface: CategoriesInterface) {
         apiService.getCategories().enqueue(object : Callback<CategoriesResponse> {
             override fun onResponse(
@@ -66,5 +67,25 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
             }
         })
     }
+
+    override fun getCategoryDetail(categoryId: String,categoriesDetailInterface: CategoriesDetailInterface) {
+        apiService.getCategoryDetail(categoryId).enqueue(object : Callback<CategoryDeatilResponse> {
+            override fun onResponse(
+                call: Call<CategoryDeatilResponse>,
+                response: Response<CategoryDeatilResponse>
+            ) {
+                if (response.isSuccessful) {
+                    categoriesDetailInterface.onSuccess(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<CategoryDeatilResponse>, t: Throwable) {
+                categoriesDetailInterface.onFail(t.localizedMessage!!)
+            }
+
+        })
+    }
+
+
 }
 

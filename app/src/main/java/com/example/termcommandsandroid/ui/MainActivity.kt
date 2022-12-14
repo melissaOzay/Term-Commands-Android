@@ -18,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     var fragmentManager: FragmentManager? = null
-
     private val homeFragment by lazy {
         HomeFragment()
     }
