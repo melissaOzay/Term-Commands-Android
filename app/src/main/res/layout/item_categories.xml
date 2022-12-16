@@ -9,12 +9,11 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="60dp"
         android:layout_height="20dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginVertical="32dp"
+        android:layout_marginStart="8dp"
         android:elevation="10dp"
         android:src="@drawable/ic_baseline_smart_display_24"
-        app:layout_constraintEnd_toStartOf="@+id/tvCommand"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@+id/tvtitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
@@ -23,9 +22,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivHome"
-        android:layout_width="382dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="352dp"
+        android:layout_height="72dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/bg_black_stroke"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,11 +37,24 @@
     </androidx.appcompat.widget.AppCompatImageView>
 
     <TextView
-        android:id="@+id/tvCommand"
-        android:layout_width="284dp"
-        android:layout_height="57dp"
+        android:id="@+id/tvtitle"
+        android:layout_width="295dp"
+        android:layout_height="24dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ivHome"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCommand"
+        android:layout_width="293dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="40dp"
         android:text="TextView"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

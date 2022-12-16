@@ -9,16 +9,16 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mywords.utility.CommonUtility
 import com.example.termcommandsandroid.R
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.CategoryDetailList
 import com.example.termcommandsandroid.ui.adapter.CategoriesDetailAdapter
+import com.example.termcommandsandroid.ui.adapter.CategoriesDetailListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_categories.view.*
-import kotlinx.android.synthetic.main.fragment_home.view.*
 
 @AndroidEntryPoint
 class CategoriesFragment : Fragment() {
@@ -26,7 +26,17 @@ class CategoriesFragment : Fragment() {
     private val categoriesViewModel: CategoriesVM by viewModels()
     val args: CategoriesFragmentArgs by navArgs()
     private val recyclerViewAdapter by lazy {
-        CategoriesDetailAdapter()
+        CategoriesDetailAdapter(listener = object :CategoriesDetailListener {
+            override fun shareButton(title: String,command:String) {
+                CommonUtility.shareText(requireActivity(),title,command)
+            }
+
+            override fun copyToClipboard(title: CharSequence,command: CharSequence) {
+                CommonUtility.copyText(title,command,requireActivity())
+                Toast.makeText(requireContext(),"Type copied",Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
     lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
