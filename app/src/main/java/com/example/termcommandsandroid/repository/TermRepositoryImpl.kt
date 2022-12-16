@@ -1,9 +1,10 @@
 package com.example.termcommandsandroid.repository
 
-import com.example.termcommandsandroid.AccountInterface
-import com.example.termcommandsandroid.CategoriesDetailInterface
-import com.example.termcommandsandroid.CategoriesInterface
-import com.example.termcommandsandroid.CommandsInterface
+import com.example.termcommandsandroid.*
+import com.example.termcommandsandroid.`interface`.AccountInterface
+import com.example.termcommandsandroid.`interface`.CategoriesDetailInterface
+import com.example.termcommandsandroid.`interface`.CategoriesInterface
+import com.example.termcommandsandroid.`interface`.CommandsInterface
 import com.example.termcommandsandroid.api.RestApi
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.AccountResponse
@@ -50,7 +51,6 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
             }
         })
     }
-
     override fun getCommand(commandInterface: CommandsInterface) {
         apiService.getCommands().enqueue(object : Callback<CommandsResponse> {
             override fun onResponse(

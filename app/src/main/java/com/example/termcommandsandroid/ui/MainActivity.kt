@@ -6,7 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.termcommandsandroid.R
 import com.example.termcommandsandroid.ui.command.CommandsFragment
 import com.example.termcommandsandroid.ui.home.HomeFragment
@@ -16,8 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var navController: NavController
-    var fragmentManager: FragmentManager? = null
+
     private val homeFragment by lazy {
         HomeFragment()
     }
@@ -29,34 +34,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        openFragment(homeFragment)
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView3) as NavHostFragment
-        navController = navHostFragment.navController
-        bottomNav.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.home -> openFragment(homeFragment)
-
-                R.id.shop -> openFragment(commandsFragment)
-                else -> {
-                    openFragment(homeFragment)
-
-                }
-
-            }
-            true
-        }
-    }
-
-
-    fun openFragment(fragment: Fragment) {
-        fragmentManager = getSupportFragmentManager()
-        fragmentManager?.beginTransaction()
-            ?.replace(R.id.fragmentContainerView3, fragment)
-            ?.addToBackStack(null)
-            ?.commit()
-    }
+        val navHostFragment = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val navController = findNavController(R.id.fragmentContainerView3)
+     NavigationUI.setupWithNavController(navHostFragment,navController)
+}
 }
 
 

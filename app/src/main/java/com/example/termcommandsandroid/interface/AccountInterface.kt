@@ -1,4 +1,4 @@
-package com.example.termcommandsandroid
+package com.example.termcommandsandroid.`interface`
 
 import com.example.termcommandsandroid.domain.entities.response.AccountResponse
 

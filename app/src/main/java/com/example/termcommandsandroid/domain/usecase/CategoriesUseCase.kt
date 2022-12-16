@@ -1,7 +1,6 @@
 package com.example.termcommandsandroid.domain.usecase
 
-import com.example.termcommandsandroid.CategoriesInterface
-import com.example.termcommandsandroid.domain.entities.response.CategoriesResponse
+import com.example.termcommandsandroid.`interface`.CategoriesInterface
 import com.example.termcommandsandroid.domain.repository.TermRepository
 import javax.inject.Inject
 

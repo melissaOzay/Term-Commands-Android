@@ -1,27 +1,25 @@
-package com.example.termcommandsandroid.ui.command
+package com.example.termcommandsandroid.ui.category.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.termcommandsandroid.`interface`.AccountInterface
-import com.example.termcommandsandroid.`interface`.CommandsInterface
+import com.example.termcommandsandroid.`interface`.CategoriesDetailInterface
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.AccountResponse
-import com.example.termcommandsandroid.domain.entities.response.CommandsResponse
+import com.example.termcommandsandroid.domain.entities.response.CategoryDeatilResponse
 import com.example.termcommandsandroid.domain.usecase.AccountUseCase
-import com.example.termcommandsandroid.domain.usecase.CommandUseCase
+import com.example.termcommandsandroid.domain.usecase.CategoriesDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CommandVM @Inject constructor(
-    val commandsUseCase: CommandUseCase,
+class CategoriesVM @Inject constructor(
     val accountUseCase: AccountUseCase,
+    val categoriesDetailUseCase: CategoriesDetailUseCase
 ) : ViewModel() {
-
-    val failer = MutableLiveData<String>()
-    val commandsListInfo = MutableLiveData<CommandsResponse>()
     val accountListInfo = MutableLiveData<AccountResponse>()
-
+    val categoriesListInfo = MutableLiveData<CategoryDeatilResponse>()
+    val failer = MutableLiveData<String>()
     fun account(accountRequest: AccountsRequest) {
         accountUseCase.account(accountRequest, object : AccountInterface {
             override fun onSuccess(data: AccountResponse) {
@@ -35,10 +33,10 @@ class CommandVM @Inject constructor(
         })
     }
 
-    fun getCommands() {
-        commandsUseCase.commands(object : CommandsInterface {
-            override fun onSuccess(data: CommandsResponse) {
-                commandsListInfo.postValue(data)
+    fun getCategoriesDetail(categoryId:String) {
+        categoriesDetailUseCase.categoriesDetail(categoryId,object : CategoriesDetailInterface {
+            override fun onSuccess(data: CategoryDeatilResponse) {
+                categoriesListInfo.postValue(data)
             }
 
             override fun onFail(message: String) {

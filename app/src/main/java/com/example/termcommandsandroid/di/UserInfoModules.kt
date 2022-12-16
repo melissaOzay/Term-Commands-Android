@@ -1,8 +1,8 @@
 package com.example.termcommandsandroid.di
 
 import android.content.Context
-import com.example.termcommandsandroid.CoreLocalHelper
 import com.example.termcommandsandroid.CoreLocalHelperImpl
+import com.example.termcommandsandroid.CoreLocalHelper
 import com.example.termcommandsandroid.api.RestApi
 import com.example.termcommandsandroid.domain.repository.TermRepository
 import com.example.termcommandsandroid.repository.TermRepositoryImpl
@@ -29,7 +29,7 @@ object UserInfoModules {
     }
     @Provides
     @Singleton
-    fun provideRetrofit(gsonConverterFactory: GsonConverterFactory,localHelper:CoreLocalHelper): Retrofit {
+    fun provideRetrofit(gsonConverterFactory: GsonConverterFactory,localHelper: CoreLocalHelper): Retrofit {
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
         val okHttpClient = OkHttpClient.Builder()

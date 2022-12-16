@@ -1,10 +1,9 @@
 package com.example.termcommandsandroid.ui.home
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.termcommandsandroid.AccountInterface
-import com.example.termcommandsandroid.CategoriesInterface
+import com.example.termcommandsandroid.`interface`.AccountInterface
+import com.example.termcommandsandroid.`interface`.CategoriesInterface
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.AccountResponse
 import com.example.termcommandsandroid.domain.entities.response.CategoriesResponse
@@ -22,7 +21,6 @@ class HomeVM @Inject constructor(
     val accountListInfo = MutableLiveData<AccountResponse>()
     val categoriesListInfo = MutableLiveData<CategoriesResponse>()
     val failer = MutableLiveData<String>()
-
     fun account(accountRequest: AccountsRequest) {
         accountUseCase.account(accountRequest, object : AccountInterface {
             override fun onSuccess(data:AccountResponse) {
@@ -48,6 +46,4 @@ class HomeVM @Inject constructor(
 
         })
     }
-
-
 }

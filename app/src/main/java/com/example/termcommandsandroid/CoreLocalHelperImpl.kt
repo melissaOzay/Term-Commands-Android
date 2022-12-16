@@ -2,7 +2,6 @@ package com.example.termcommandsandroid
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.google.gson.Gson
 import javax.inject.Inject
 
 class CoreLocalHelperImpl @Inject constructor(context: Context) : CoreLocalHelper {

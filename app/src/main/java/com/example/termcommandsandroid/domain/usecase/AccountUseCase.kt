@@ -1,7 +1,7 @@
 package com.example.termcommandsandroid.domain.usecase
 
 
-import com.example.termcommandsandroid.AccountInterface
+import com.example.termcommandsandroid.`interface`.AccountInterface
 import com.example.termcommandsandroid.CoreLocalHelper
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.AccountResponse
