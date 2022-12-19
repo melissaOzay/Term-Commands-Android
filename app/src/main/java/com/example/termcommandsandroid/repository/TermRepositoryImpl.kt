@@ -1,6 +1,6 @@
 package com.example.termcommandsandroid.repository
 
-import com.example.termcommandsandroid.*
+import com.example.retrofitrecyclerview.ProgressBar.LoadingDialog
 import com.example.termcommandsandroid.`interface`.AccountInterface
 import com.example.termcommandsandroid.`interface`.CategoriesDetailInterface
 import com.example.termcommandsandroid.`interface`.CategoriesInterface

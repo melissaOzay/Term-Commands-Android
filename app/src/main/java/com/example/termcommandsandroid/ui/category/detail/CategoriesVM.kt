@@ -1,5 +1,6 @@
 package com.example.termcommandsandroid.ui.category.detail
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.termcommandsandroid.`interface`.AccountInterface
@@ -12,6 +13,7 @@ import com.example.termcommandsandroid.domain.usecase.CategoriesDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+
 @HiltViewModel
 class CategoriesVM @Inject constructor(
     val accountUseCase: AccountUseCase,
@@ -21,6 +23,7 @@ class CategoriesVM @Inject constructor(
     val categoriesListInfo = MutableLiveData<CategoryDeatilResponse>()
     val failer = MutableLiveData<String>()
     fun account(accountRequest: AccountsRequest) {
+
         accountUseCase.account(accountRequest, object : AccountInterface {
             override fun onSuccess(data: AccountResponse) {
                 accountListInfo.postValue(data)
@@ -32,7 +35,6 @@ class CategoriesVM @Inject constructor(
 
         })
     }
-
     fun getCategoriesDetail(categoryId:String) {
         categoriesDetailUseCase.categoriesDetail(categoryId,object : CategoriesDetailInterface {
             override fun onSuccess(data: CategoryDeatilResponse) {

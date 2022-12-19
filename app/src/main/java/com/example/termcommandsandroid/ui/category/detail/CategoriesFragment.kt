@@ -7,12 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.core.view.isEmpty
+import androidx.core.view.isNotEmpty
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mywords.utility.CommonUtility
+import com.example.retrofitrecyclerview.ProgressBar.LoadingDialog
 import com.example.termcommandsandroid.R
+import com.example.termcommandsandroid.databinding.FragmentCategoriesBinding
+import com.example.termcommandsandroid.databinding.FragmentCommandBinding
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.CategoryDetailList
 import com.example.termcommandsandroid.ui.adapter.CategoriesDetailAdapter
@@ -22,7 +27,8 @@ import kotlinx.android.synthetic.main.fragment_categories.view.*
 
 @AndroidEntryPoint
 class CategoriesFragment : Fragment() {
-
+    private lateinit var binding: FragmentCategoriesBinding
+    private var loadingDialog: LoadingDialog? = null
     private val categoriesViewModel: CategoriesVM by viewModels()
     val args: CategoriesFragmentArgs by navArgs()
     private val recyclerViewAdapter by lazy {
@@ -51,11 +57,10 @@ class CategoriesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_categories, container, false)
-
         requireActivity().getWindow()
             .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-
+        binding = FragmentCategoriesBinding.inflate(inflater, container, false)
+        val view = binding.root
         recyclerView = view.rvCategories
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager =
@@ -67,9 +72,26 @@ class CategoriesFragment : Fragment() {
         categoriesViewModel.account(AccountsRequest("", ""))
 
     }
+    fun showLoading() {
+        if (loadingDialog == null) {
+            loadingDialog = LoadingDialog(requireContext())
+        }
+
+        loadingDialog?.apply {
+            if (isShowing.not()) {
+                show()
+            }
+        }
+    }
+
+    fun hideLoading() {
+        loadingDialog?.dismiss()
+    }
     private fun categoriesDetail(){
+       showLoading()
         categoriesViewModel.categoriesListInfo.observe(this){
             recyclerViewAdapter.setData(it.data as ArrayList<CategoryDetailList> )
+           hideLoading()
         }
         categoriesViewModel.failer.observe(this) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()

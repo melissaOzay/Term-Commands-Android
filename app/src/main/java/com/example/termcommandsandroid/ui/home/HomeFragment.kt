@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.core.view.isEmpty
+import androidx.core.view.isNotEmpty
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation.findNavController
@@ -14,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.retrofitrecyclerview.ProgressBar.LoadingDialog
 import com.example.termcommandsandroid.databinding.FragmentHomeBinding
 import com.example.termcommandsandroid.domain.entities.response.CategoriesList
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
@@ -24,7 +27,7 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-
+    private var loadingDialog: LoadingDialog? = null
     private val homeFragmentViewModel: HomeVM by viewModels()
     val args: HomeFragmentArgs by navArgs()
     private lateinit var binding: FragmentHomeBinding
@@ -69,12 +72,26 @@ class HomeFragment : Fragment() {
         homeFragmentViewModel.getData()
 
     }
+    fun showLoading() {
+        if (loadingDialog == null) {
+            loadingDialog = LoadingDialog(requireContext())
+        }
 
+        loadingDialog?.apply {
+            if (isShowing.not()) {
+                show()
+            }
+        }
+    }
+
+    fun hideLoading() {
+        loadingDialog?.dismiss()
+    }
     private fun categories() {
+        showLoading()
         homeFragmentViewModel.categoriesListInfo.observe(this) {
             recyclerViewAdapter.setData(it.data as ArrayList<CategoriesList>)
-
-        }
+            hideLoading()        }
 
         homeFragmentViewModel.failer.observe(this) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
