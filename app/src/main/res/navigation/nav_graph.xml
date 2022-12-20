@@ -32,6 +32,9 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <argument
+            android:name="commant"
+            app:argType="string" />
     </fragment>
 
 

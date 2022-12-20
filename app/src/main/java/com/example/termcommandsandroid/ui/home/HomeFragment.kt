@@ -41,6 +41,7 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         categories()
 
+
     }
 
     override fun onCreateView(
@@ -51,7 +52,8 @@ class HomeFragment : Fragment() {
         val view = binding.root
         requireActivity().getWindow()
             .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-
+        binding.toolbarText.searchText("Type command name or description")
+        binding.toolbarText.toolbarText("Terminal Commands")
         recyclerView = view.rv
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager =
@@ -59,7 +61,7 @@ class HomeFragment : Fragment() {
 
         recyclerViewAdapter.onItemClick={
             val action =
-                HomeFragmentDirections.actionHomeFragmentToCategoriesFragment(it.id)
+                HomeFragmentDirections.actionHomeFragmentToCategoriesFragment(it.id,it.title)
             findNavController().navigate(action)
             Log.e("id","${it.id}")
 

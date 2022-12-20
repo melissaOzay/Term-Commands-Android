@@ -8,8 +8,10 @@
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/drawable/bg_black_stroke.xml" value="0.317" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/drawable/ic_baseline_grid_view_24.xml" value="0.337" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
+        <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.107" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.337" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/drawable/ic_baseline_smart_display_24.xml" value="0.337" />
+        <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/drawable/searchview_backgraound.xml" value="0.122" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/drawable/selector_nav_item.xml" value="0.1" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/activity_main.xml" value="0.33" />
@@ -17,11 +19,12 @@
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/fragment_categories.xml" value="0.22" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/fragment_command.xml" value="0.33" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/fragment_commant.xml" value="0.1" />
-        <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/item_categories.xml" value="0.33" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/item_command.xml" value="0.25" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/item_home.xml" value="0.5" />
+        <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/layout/toolbar_text.xml" value="0.25" />
         <entry key="..\:/Users/Melisa/Desktop/TermCommandsAndroid/app/src/main/res/menu/menu_bottom.xml" value="0.1" />
       </map>
     </option>

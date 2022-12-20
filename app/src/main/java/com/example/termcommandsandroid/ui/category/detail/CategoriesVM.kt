@@ -7,6 +7,7 @@ import com.example.termcommandsandroid.`interface`.AccountInterface
 import com.example.termcommandsandroid.`interface`.CategoriesDetailInterface
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.AccountResponse
+import com.example.termcommandsandroid.domain.entities.response.CategoriesList
 import com.example.termcommandsandroid.domain.entities.response.CategoryDeatilResponse
 import com.example.termcommandsandroid.domain.usecase.AccountUseCase
 import com.example.termcommandsandroid.domain.usecase.CategoriesDetailUseCase
@@ -21,6 +22,7 @@ class CategoriesVM @Inject constructor(
 ) : ViewModel() {
     val accountListInfo = MutableLiveData<AccountResponse>()
     val categoriesListInfo = MutableLiveData<CategoryDeatilResponse>()
+    val searchcategoriesListInfo = MutableLiveData<CategoriesList>()
     val failer = MutableLiveData<String>()
     fun account(accountRequest: AccountsRequest) {
 
