@@ -1,6 +1,7 @@
 package com.example.termcommandsandroid.ui.category.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,7 @@ class CategoriesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         categoriesDetail()
+
         args.let {
             categoriesViewModel.getCategoriesDetail(it.id)
         }
@@ -75,11 +77,7 @@ class CategoriesFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                recyclerViewAdapter.filter.filter(newText)
-                if(newText.equals("")){
-                    categoriesDetail()
-                    recyclerViewAdapter.notifyDataSetChanged()
-                }
+                    categoriesViewModel.search(newText)
                 return false
             }
 
@@ -88,11 +86,6 @@ class CategoriesFragment : Fragment() {
         return view
     }
 
-    override fun onStart() {
-        super.onStart()
-        categoriesViewModel.account(AccountsRequest("", ""))
-
-    }
 
     fun showLoading() {
         if (loadingDialog == null) {
@@ -114,7 +107,12 @@ class CategoriesFragment : Fragment() {
         showLoading()
         categoriesViewModel.categoriesListInfo.observe(this) {
             recyclerViewAdapter.setData(it.data as ArrayList<CategoryDetailList>)
+            recyclerViewAdapter.notifyDataSetChanged()
             hideLoading()
+        }
+
+        categoriesViewModel.searchcategoriesListInfo.observe(this){
+            recyclerViewAdapter.setData(it as  ArrayList<CategoryDetailList>)
         }
         categoriesViewModel.failer.observe(this) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
