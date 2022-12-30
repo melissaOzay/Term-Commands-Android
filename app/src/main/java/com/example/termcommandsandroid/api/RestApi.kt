@@ -16,7 +16,7 @@ interface RestApi {
     fun getCategories(): Call<CategoriesResponse>
 
     @GET("api/commands")
-    fun getCommands(): Call<CommandsResponse>
+    fun getCommands(@Query("commandTitle ") commandTitle : String): Call<CommandsResponse>
 
     @GET("api/categories/{categoryId}/commands")
     fun getCategoryDetail(@Path("categoryId") categoryId: String): Call<CategoryDeatilResponse>

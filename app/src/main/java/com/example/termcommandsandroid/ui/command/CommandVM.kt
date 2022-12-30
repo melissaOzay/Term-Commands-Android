@@ -15,36 +15,12 @@ import javax.inject.Inject
 @HiltViewModel
 class CommandVM @Inject constructor(
     val commandsUseCase: CommandUseCase,
-    val accountUseCase: AccountUseCase,
 ) : ViewModel() {
 
     val failer = MutableLiveData<String>()
     val commandsListInfo = MutableLiveData<CommandsResponse>()
-    val accountListInfo = MutableLiveData<AccountResponse>()
 
-    fun account(accountRequest: AccountsRequest) {
-        accountUseCase.account(accountRequest, object : AccountInterface {
-            override fun onSuccess(data: AccountResponse) {
-                accountListInfo.postValue(data)
-            }
 
-            override fun onFail(message: String) {
-                failer.postValue(message)
-            }
 
-        })
-    }
 
-    fun getCommands() {
-        commandsUseCase.commands(object : CommandsInterface {
-            override fun onSuccess(data: CommandsResponse) {
-                commandsListInfo.postValue(data)
-            }
-
-            override fun onFail(message: String) {
-                failer.postValue(message)
-            }
-
-        })
-    }
 }

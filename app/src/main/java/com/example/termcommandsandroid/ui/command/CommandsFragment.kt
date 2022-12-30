@@ -66,8 +66,7 @@ class CommandsFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.account(AccountsRequest("", ""))
-        viewModel.getCommands()
+
     }
 
     private fun commends() {

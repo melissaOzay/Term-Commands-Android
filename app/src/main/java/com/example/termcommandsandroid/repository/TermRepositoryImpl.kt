@@ -51,8 +51,8 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
             }
         })
     }
-    override fun getCommand(commandInterface: CommandsInterface) {
-        apiService.getCommands().enqueue(object : Callback<CommandsResponse> {
+    override fun getCommand(commandTitle :String,commandInterface: CommandsInterface) {
+        apiService.getCommands(commandTitle).enqueue(object : Callback<CommandsResponse> {
             override fun onResponse(
                 call: Call<CommandsResponse>,
                 response: Response<CommandsResponse>

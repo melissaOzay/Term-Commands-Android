@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.view.isEmpty
 import androidx.core.view.isNotEmpty
@@ -54,6 +55,17 @@ class HomeFragment : Fragment() {
             .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         binding.toolbarText.searchText("Type command name or description")
         binding.toolbarText.toolbarText("Terminal Commands")
+        binding.toolbarText.search(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                homeFragmentViewModel.search(newText)
+                return false
+            }
+
+        })
         recyclerView = view.rv
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager =

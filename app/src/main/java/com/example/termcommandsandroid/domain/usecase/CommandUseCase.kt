@@ -7,7 +7,7 @@ import javax.inject.Inject
 class CommandUseCase @Inject constructor(
     private val userRepository: TermRepository
 ) {
-    fun commands(commandInterface: CommandsInterface) =
-        userRepository.getCommand( commandInterface)
+    fun commands(name:String,commandInterface: CommandsInterface) =
+        userRepository.getCommand(name,commandInterface)
 
 }
