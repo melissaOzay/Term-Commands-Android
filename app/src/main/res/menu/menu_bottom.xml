@@ -10,7 +10,7 @@
             android:icon="@drawable/ic_baseline_shopping_cart_24"
             android:title="My Commands" />
         <item
-            android:id="@+id/others"
+            android:id="@+id/othersFragment"
             android:icon="@drawable/ic_baseline_grid_view_24"
             android:title="Others" />
 

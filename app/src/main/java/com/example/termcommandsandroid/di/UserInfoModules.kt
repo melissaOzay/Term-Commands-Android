@@ -40,6 +40,7 @@ object UserInfoModules {
                 val request: Request =
                     chain.request().newBuilder()
                         .addHeader("Authorization", "Bearer ${localHelper.getAuthorizationToken()}")
+                        .addHeader("app-language", "tr")
                         .build()
 
                 chain.proceed(request)

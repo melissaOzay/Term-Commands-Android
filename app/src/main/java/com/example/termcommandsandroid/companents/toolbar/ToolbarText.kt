@@ -31,6 +31,9 @@ class ToolbarText @JvmOverloads constructor(
         binding.searchView.queryHint = text.toString()
 
     }
+    fun searhVisibility(){
+        binding.searchView.visibility = View.GONE
+    }
     fun search(listener: SearchView.OnQueryTextListener){
         binding.searchView.setOnQueryTextListener(listener)
 

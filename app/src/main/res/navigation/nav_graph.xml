@@ -36,6 +36,11 @@
             android:name="commant"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/othersFragment"
+        tools:layout="@layout/fragment_others"
+        android:name="com.example.termcommandsandroid.ui.others.OthersFragment"
+        android:label="OthersFragment" />
 
 
 </navigation>

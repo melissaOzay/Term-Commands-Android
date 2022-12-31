@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1F2127"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.example.termcommandsandroid.companents.toolbar.ToolbarText
+        android:id="@+id/toolbarText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarText" />
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="0dp"
+        android:layout_height="232dp"
+        android:background="@drawable/bg_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarText"
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvPro"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#222833"
+            android:text="Pro"
+            android:paddingLeft="16dp"
+            android:paddingVertical="8dp"
+            android:textColor="@color/white"
+            android:drawableRight="@drawable/ic_baseline_chevron_right_24"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="165dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white" />
+        <TextView
+            android:id="@+id/tvRate"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="16dp"
+            android:paddingVertical="8dp"
+            android:background="#222833"
+            android:text="Rate Comment"
+            android:textColor="@color/white"
+            android:drawableRight="@drawable/ic_baseline_chevron_right_24"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="165dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white" />
+        <TextView
+            android:id="@+id/tvSugges"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="16dp"
+            android:paddingVertical="8dp"
+            android:background="#222833"
+            android:text="Suggestion"
+            android:textColor="@color/white"
+            android:drawableRight="@drawable/ic_baseline_chevron_right_24"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="165dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#1F2127" />
+        <TextView
+            android:id="@+id/tvLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="16dp"
+            android:paddingVertical="8dp"
+            android:background="#222833"
+            android:text="Language"
+            android:textColor="@color/white"
+            android:drawableRight="@drawable/ic_baseline_chevron_right_24"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="165dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white" />
+        <TextView
+            android:id="@+id/tvNotification"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="16dp"
+            android:paddingVertical="8dp"
+            android:background="#222833"
+            android:text="Notification"
+            android:textColor="@color/white"
+            android:drawableRight="@drawable/ic_baseline_chevron_right_24"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="165dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

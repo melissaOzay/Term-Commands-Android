@@ -16,14 +16,18 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mywords.utility.CommonUtility
 import com.example.retrofitrecyclerview.ProgressBar.LoadingDialog
 import com.example.termcommandsandroid.databinding.FragmentHomeBinding
-import com.example.termcommandsandroid.domain.entities.response.CategoriesList
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
-import com.example.termcommandsandroid.domain.entities.response.CategoriesResponse
+import com.example.termcommandsandroid.domain.entities.response.*
+import com.example.termcommandsandroid.ui.adapter.CategoriesDetailAdapter
+import com.example.termcommandsandroid.ui.adapter.CategoriesDetailListener
 import com.example.termcommandsandroid.ui.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_categories.view.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 @AndroidEntryPoint
@@ -35,6 +39,7 @@ class HomeFragment : Fragment() {
     private val recyclerViewAdapter by lazy {
         HomeAdapter()
     }
+
     lateinit var recyclerView: RecyclerView
 
 
