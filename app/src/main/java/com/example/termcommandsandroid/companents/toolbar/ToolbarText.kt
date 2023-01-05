@@ -1,17 +1,12 @@
 package com.example.termcommandsandroid.companents.toolbar
 
 import android.content.Context
-import android.location.GnssAntennaInfo
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.SearchView
-import com.example.termcommandsandroid.R
 import com.example.termcommandsandroid.databinding.ToolbarTextBinding
-import com.example.termcommandsandroid.domain.entities.response.CategoryDetailList
-import com.example.termcommandsandroid.ui.adapter.CategoriesDetailAdapter
 
 class ToolbarText @JvmOverloads constructor(
     context: Context,

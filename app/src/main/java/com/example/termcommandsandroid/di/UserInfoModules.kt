@@ -1,6 +1,7 @@
 package com.example.termcommandsandroid.di
 
 import android.content.Context
+import android.util.Log
 import com.example.termcommandsandroid.CoreLocalHelperImpl
 import com.example.termcommandsandroid.CoreLocalHelper
 import com.example.termcommandsandroid.api.RestApi
@@ -17,6 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+import kotlin.math.log
 
 
 @Module
@@ -40,9 +42,8 @@ object UserInfoModules {
                 val request: Request =
                     chain.request().newBuilder()
                         .addHeader("Authorization", "Bearer ${localHelper.getAuthorizationToken()}")
-                        .addHeader("app-language", "tr")
+                        .addHeader("app-language", "${localHelper.getCurrentLocale()}")
                         .build()
-
                 chain.proceed(request)
             })
             .addInterceptor(logging)

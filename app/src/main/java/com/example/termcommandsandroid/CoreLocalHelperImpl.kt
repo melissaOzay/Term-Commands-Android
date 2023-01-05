@@ -2,6 +2,7 @@ package com.example.termcommandsandroid
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Resources
 import javax.inject.Inject
 
 class CoreLocalHelperImpl @Inject constructor(context: Context) : CoreLocalHelper {
@@ -19,6 +20,10 @@ class CoreLocalHelperImpl @Inject constructor(context: Context) : CoreLocalHelpe
 
     override fun getAuthorizationToken(): String? {
         return mPrefs.getString(AUTHORIZATON_PREF_HELPER, "UnAuthorization")!!
+    }
+
+    override fun getCurrentLocale(): String? {
+        return Resources.getSystem().getConfiguration().locale.getLanguage()
     }
 
 }

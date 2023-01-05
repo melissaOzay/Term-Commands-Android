@@ -1,5 +1,12 @@
 package com.example.termcommandsandroid
 
+import android.annotation.TargetApi
+import android.content.res.Resources
+import android.os.Build
+import android.util.Log
+import java.util.*
+
+
 interface CoreLocalHelper {
     /**
      * Authorization Key'i kaydetmek için kullanılır
@@ -11,5 +18,9 @@ interface CoreLocalHelper {
      * Kaydedilen authorization keyi döner
      */
     fun getAuthorizationToken(): String?
+
+    fun getCurrentLocale(): String?
+
+
 
 }

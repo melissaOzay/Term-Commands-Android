@@ -1,6 +1,7 @@
 package com.example.termcommandsandroid.ui.command
 
 import android.os.Bundle
+import android.service.controls.actions.CommandAction
 import android.text.TextUtils.isEmpty
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.core.view.isEmpty
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.termcommandsandroid.R
@@ -21,6 +23,7 @@ import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.CategoriesList
 import com.example.termcommandsandroid.domain.entities.response.CommandsList
 import com.example.termcommandsandroid.ui.adapter.CommandAdapter
+import com.example.termcommandsandroid.ui.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
@@ -54,6 +57,12 @@ class CommandsFragment : Fragment() {
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
+        binding.ivAddBtn.setOnClickListener {
+            val action =
+                CommandsFragmentDirections.actionCommandsFragmentToAddCommands()
+            findNavController().navigate(action)
+        }
+
         if(recyclerViewAdapter.itemCount==0){
             binding.constraint.visibility  = View.VISIBLE
             binding.rv.visibility =View.GONE
@@ -63,12 +72,7 @@ class CommandsFragment : Fragment() {
         }
         return view
     }
-
-    override fun onStart() {
-        super.onStart()
-
-    }
-
+    
     private fun commends() {
         viewModel.commandsListInfo.observe(this) {
             recyclerViewAdapter.setData(it.data as ArrayList<CommandsList>)

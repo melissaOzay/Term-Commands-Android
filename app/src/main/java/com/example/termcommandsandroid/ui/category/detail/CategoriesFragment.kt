@@ -1,7 +1,6 @@
 package com.example.termcommandsandroid.ui.category.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,14 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mywords.utility.CommonUtility
 import com.example.retrofitrecyclerview.ProgressBar.LoadingDialog
 import com.example.termcommandsandroid.databinding.FragmentCategoriesBinding
-import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.CategoryDetailList
 import com.example.termcommandsandroid.ui.adapter.CategoriesDetailAdapter
 import com.example.termcommandsandroid.ui.adapter.CategoriesDetailListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_categories.view.*
-import java.util.*
-import java.util.Locale.filter
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint

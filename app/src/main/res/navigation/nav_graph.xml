@@ -23,7 +23,11 @@
         android:id="@+id/commandsFragment"
         tools:layout="@layout/fragment_command"
         android:name="com.example.termcommandsandroid.ui.command.CommandsFragment"
-        android:label="CommandsFragment" />
+        android:label="CommandsFragment" >
+        <action
+            android:id="@+id/action_commandsFragment_to_addCommands"
+            app:destination="@id/addCommands" />
+    </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.example.termcommandsandroid.ui.category.detail.CategoriesFragment"
@@ -41,6 +45,11 @@
         tools:layout="@layout/fragment_others"
         android:name="com.example.termcommandsandroid.ui.others.OthersFragment"
         android:label="OthersFragment" />
+    <fragment
+        android:id="@+id/addCommands"
+        tools:layout="@layout/fragment_add_commands"
+        android:name="com.example.termcommandsandroid.ui.add.commands.AddCommands"
+        android:label="AddCommands" />
 
 
 </navigation>

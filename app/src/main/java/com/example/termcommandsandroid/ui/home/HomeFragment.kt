@@ -8,11 +8,8 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.core.view.isEmpty
-import androidx.core.view.isNotEmpty
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,7 +24,6 @@ import com.example.termcommandsandroid.ui.adapter.CategoriesDetailAdapter
 import com.example.termcommandsandroid.ui.adapter.CategoriesDetailListener
 import com.example.termcommandsandroid.ui.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_categories.view.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 @AndroidEntryPoint
@@ -39,16 +35,21 @@ class HomeFragment : Fragment() {
     private val recyclerViewAdapter by lazy {
         HomeAdapter()
     }
+    private val rvCategotiesAdapter by lazy {
+        CategoriesDetailAdapter(listener = object : CategoriesDetailListener {
+            override fun shareButton(title: String, command: String) {
+                CommonUtility.shareText(requireActivity(), title, command)
+            }
 
+            override fun copyToClipboard(title: CharSequence, command: CharSequence) {
+                CommonUtility.copyText(title, command, requireActivity())
+                Toast.makeText(requireContext(), "Type copied", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
     lateinit var recyclerView: RecyclerView
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        categories()
-
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,31 +67,53 @@ class HomeFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                homeFragmentViewModel.search(newText)
+                if (newText.isNotEmpty()) {
+                    search()
+                    homeFragmentViewModel.search(newText)
+                    recyclerView = view.rv
+                    recyclerView.adapter = rvCategotiesAdapter
+                    recyclerView.layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                    rvCategotiesAdapter.notifyDataSetChanged()
+                } else {
+                    recyclerView = view.rv
+                    homeRecyclerView()
+                    recyclerViewAdapter.notifyDataSetChanged()
+                }
+
                 return false
             }
 
         })
         recyclerView = view.rv
-        recyclerView.adapter = recyclerViewAdapter
-        recyclerView.layoutManager =
-            GridLayoutManager(requireContext(), 2)
-
-        recyclerViewAdapter.onItemClick={
+        homeRecyclerView()
+        recyclerViewAdapter.onItemClick = {
             val action =
-                HomeFragmentDirections.actionHomeFragmentToCategoriesFragment(it.id,it.title)
+                HomeFragmentDirections.actionHomeFragmentToCategoriesFragment(
+                    it.id,
+                    it.title
+                )
             findNavController().navigate(action)
-            Log.e("id","${it.id}")
+            Log.e("id", "${it.id}")
 
         }
         return view
     }
+
+    fun homeRecyclerView() {
+        recyclerView.adapter = recyclerViewAdapter
+        recyclerView.layoutManager =
+            GridLayoutManager(requireContext(), 2)
+        categories()
+    }
+
     override fun onStart() {
         super.onStart()
         homeFragmentViewModel.account(AccountsRequest("", ""))
         homeFragmentViewModel.getData()
 
     }
+
     fun showLoading() {
         if (loadingDialog == null) {
             loadingDialog = LoadingDialog(requireContext())
@@ -106,15 +129,24 @@ class HomeFragment : Fragment() {
     fun hideLoading() {
         loadingDialog?.dismiss()
     }
+
     private fun categories() {
         showLoading()
-        homeFragmentViewModel.categoriesListInfo.observe(this) {
+        homeFragmentViewModel.categoriesListInfo.observe(viewLifecycleOwner) {
             recyclerViewAdapter.setData(it.data as ArrayList<CategoriesList>)
-            hideLoading()        }
+            hideLoading()
+        }
 
-        homeFragmentViewModel.failer.observe(this) {
+        homeFragmentViewModel.failer.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
 
+    }
+
+    private fun search() {
+        homeFragmentViewModel.commandsListInfo.observe(this) {
+            rvCategotiesAdapter.setData(it.data as ArrayList<CategoryDetailList>)
+
+        }
     }
 }
