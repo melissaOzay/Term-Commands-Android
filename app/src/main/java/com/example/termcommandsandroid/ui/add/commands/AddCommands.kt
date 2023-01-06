@@ -9,17 +9,28 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.termcommandsandroid.CoreLocalHelper
 import com.example.termcommandsandroid.databinding.FragmentAddCommandsBinding
 import com.example.termcommandsandroid.domain.entities.request.CommandAddRequest
 import com.example.termcommandsandroid.domain.entities.request.CreateCommandRequest
+import com.example.termcommandsandroid.ui.adapter.AddCommandAdapter
+import com.example.termcommandsandroid.ui.adapter.CommandAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_add_commands.view.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
 @AndroidEntryPoint
 class AddCommands : Fragment() {
     private val viewModel: AddCommandsVM by viewModels()
     private lateinit var binding: FragmentAddCommandsBinding
+    private val recyclerViewAdapter by lazy {
+        AddCommandAdapter()
+    }
+
+    lateinit var recyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,24 +43,19 @@ class AddCommands : Fragment() {
         commands()
         binding.tvSave.setOnClickListener {
             Toast.makeText(requireContext(), "başarılı", Toast.LENGTH_SHORT).show()
-            addCommands()
+        }
+        recyclerView = view.rvAddCommand
+        recyclerView.adapter = recyclerViewAdapter
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        recyclerViewAdapter.setData(arrayListOf())
+        recyclerViewAdapter.addData()
+        binding.ivAddBtn.setOnClickListener {
+            recyclerViewAdapter.addData()
+
         }
 
         return view
-    }
-
-    fun addCommands() {
-        val terminalCm = binding.edtTerCom.text.toString()
-        val cmTitle = binding.edtComComment.text.toString()
-        val cmDescription = binding.edtComName.text.toString()
-        val language = getCurrentLocale()
-        val addComment = CreateCommandRequest(cmTitle, language.toString(), cmDescription)
-        val listAddCommand = CommandAddRequest(listOf(addComment), terminalCm)
-        viewModel.addCommands(listAddCommand)
-    }
-
-    fun getCurrentLocale(): String? {
-        return Resources.getSystem().getConfiguration().locale.getLanguage()
     }
 
     private fun commands() {
