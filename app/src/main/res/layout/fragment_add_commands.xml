@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#1F2127"
-    android:layout_height="match_parent">
-
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivHome"
-        android:layout_width="350dp"
-        android:layout_height="80dp"
-        android:layout_marginHorizontal="16dp"
-        android:src="@drawable/bg_black_stroke"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.262"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07"
-        tools:ignore="MissingConstraints" />
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1F2127">
     <TextView
         android:id="@+id/tvCancel"
         style="@style/Widget.AppCompat.TextView"
@@ -33,7 +18,6 @@
         android:textColor="@color/blue"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/ivHome"
         app:layout_constraintEnd_toStartOf="@+id/tvSave"
         app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,82 +35,107 @@
         android:textColor="@color/blue"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/ivHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvCancel"
         app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Command List Name"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/ivHome" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtTerCom"
-                android:layout_width="180dp"
-                android:layout_height="46dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@android:color/transparent"
-                android:hint="Exm:Terminal Commands"
-                android:paddingStart="16dp"
-                android:textColorHint="@color/grey"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                tools:ignore="MissingConstraints" />
-
-    <ScrollView
-        android:layout_width="408dp"
-        android:layout_height="563dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="621dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivHome"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/tvCancel">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivHome"
+                    android:layout_width="350dp"
+                    android:layout_height="80dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:src="@drawable/bg_black_stroke"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.262"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.07"
+                    tools:ignore="MissingConstraints" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvAddCommand"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Command List Name"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivHome" />
 
-        <ImageView
-            android:id="@+id/ivAddBtn"
-            android:layout_width="185dp"
-            android:layout_height="57dp"
-            android:layout_marginTop="34dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvAddCommand"
-            app:srcCompat="@drawable/bg_white_stroke" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtTerCom"
+                    android:layout_width="180dp"
+                    android:layout_height="46dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Exm:Terminal Commands"
+                    android:paddingStart="16dp"
+                    android:textColorHint="@color/grey"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6"
+                    tools:ignore="MissingConstraints" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="138dp"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:text="Add Command"
-            android:textColor="@color/grey"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ivAddBtn"
-            app:layout_constraintEnd_toEndOf="@+id/ivAddBtn"
-            app:layout_constraintHorizontal_bias="0.489"
-            app:layout_constraintStart_toStartOf="@+id/ivAddBtn"
-            app:layout_constraintTop_toTopOf="@+id/ivAddBtn" />
-    </ScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAddCommand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintHeight_default="wrap" />
+
+            <LinearLayout
+                android:id="@+id/ivAddBtn"
+                android:layout_width="185dp"
+                android:layout_height="57dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bg_white_stroke"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sv"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="138dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="Add Command"
+                    android:textColor="@color/grey"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivAddBtn"
+                    app:layout_constraintEnd_toEndOf="@+id/ivAddBtn"
+                    app:layout_constraintHorizontal_bias="0.489"
+                    app:layout_constraintStart_toStartOf="@+id/ivAddBtn" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

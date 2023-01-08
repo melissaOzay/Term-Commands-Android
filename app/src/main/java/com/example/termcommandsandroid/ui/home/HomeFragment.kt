@@ -1,6 +1,8 @@
 package com.example.termcommandsandroid.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -107,9 +109,12 @@ class HomeFragment : Fragment() {
         categories()
     }
 
+    @SuppressLint("HardwareIds")
     override fun onStart() {
         super.onStart()
-        homeFragmentViewModel.account(AccountsRequest("", ""))
+        val android_id = Settings.Secure.getString(getContext()?.getContentResolver(),
+            Settings.Secure.ANDROID_ID)
+        homeFragmentViewModel.account(AccountsRequest("a", "$android_id"))
         homeFragmentViewModel.getData()
 
     }

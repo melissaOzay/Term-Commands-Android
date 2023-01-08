@@ -9,21 +9,19 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.termcommandsandroid.CoreLocalHelper
 import com.example.termcommandsandroid.databinding.FragmentAddCommandsBinding
 import com.example.termcommandsandroid.domain.entities.request.CommandAddRequest
-import com.example.termcommandsandroid.domain.entities.request.CreateCommandRequest
 import com.example.termcommandsandroid.ui.adapter.AddCommandAdapter
-import com.example.termcommandsandroid.ui.adapter.CommandAdapter
+import com.example.termcommandsandroid.ui.command.CommandsFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_commands.view.*
-import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
 @AndroidEntryPoint
-class AddCommands : Fragment() {
+class AddCommandsFragment : Fragment() {
     private val viewModel: AddCommandsVM by viewModels()
     private lateinit var binding: FragmentAddCommandsBinding
     private val recyclerViewAdapter by lazy {
@@ -50,10 +48,23 @@ class AddCommands : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerViewAdapter.setData(arrayListOf())
         recyclerViewAdapter.addData()
+
         binding.ivAddBtn.setOnClickListener {
             recyclerViewAdapter.addData()
-
         }
+        binding.tvSave.setOnClickListener {
+            recyclerView.adapter = recyclerViewAdapter
+            recyclerView.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            recyclerViewAdapter.setData(arrayListOf())
+            var title= binding.edtTerCom.text.toString()
+            viewModel.addCommands(CommandAddRequest(arrayListOf(),title))
+            val action =
+                AddCommandsFragmentDirections.actionAddCommandsToCommandsFragment()
+            findNavController().navigate(action)
+            recyclerViewAdapter.notifyDataSetChanged()
+        }
+
 
         return view
     }

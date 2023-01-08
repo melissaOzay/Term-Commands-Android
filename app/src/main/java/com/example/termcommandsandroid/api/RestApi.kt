@@ -20,6 +20,9 @@ interface RestApi {
     @POST("api/list")
     fun postCategories(@Body addCommandRequest:CommandAddRequest): Call<CommandResponse>
 
+    @GET("/api/list")
+    fun getCategoriesCommand(): Call<CommandGetResponse>
+
     @GET("api/categories/{categoryId}/commands")
     fun getCategoryDetail(@Path("categoryId") categoryId: String): Call<CategoryDeatilResponse>
 }

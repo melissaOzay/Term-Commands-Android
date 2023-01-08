@@ -6,21 +6,21 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.termcommandsandroid.R
+import com.example.termcommandsandroid.domain.entities.response.CommandAddList
 import com.example.termcommandsandroid.domain.entities.response.CommandsList
 
 class CommandAdapter : RecyclerView.Adapter<CommandAdapter.CompanyViewHolder>() {
-    private var commandsList = arrayListOf<CommandsList>()
+    private var commandsList = arrayListOf<CommandAddList>()
 
-    fun setData(commandsList: ArrayList<CommandsList>) {
+    fun setData(commandsList: ArrayList<CommandAddList>) {
         this.commandsList = commandsList
         notifyDataSetChanged()
     }
 
     class CompanyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameText = view.findViewById<TextView>(R.id.tvCommand)
-        fun bindItems(item: CommandsList) {
-            nameText.text = item.title
-
+        fun bindItems(item: CommandAddList) {
+            nameText.text = item.listTitle
         }
 
     }

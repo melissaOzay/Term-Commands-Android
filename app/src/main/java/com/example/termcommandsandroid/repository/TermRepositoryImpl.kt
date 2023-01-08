@@ -4,7 +4,6 @@ import com.example.termcommandsandroid.`interface`.*
 import com.example.termcommandsandroid.api.RestApi
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.request.CommandAddRequest
-import com.example.termcommandsandroid.domain.entities.request.CreateCommandRequest
 import com.example.termcommandsandroid.domain.entities.response.*
 import com.example.termcommandsandroid.domain.repository.TermRepository
 import retrofit2.Call
@@ -95,6 +94,23 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
                 categoriesDetailInterface.onFail(t.localizedMessage!!)
             }
 
+        })
+    }
+
+    override fun getAddCommands(getAddCommands: GetAddCommandsInterface) {
+        apiService.getCategoriesCommand().enqueue(object : Callback<CommandGetResponse> {
+            override fun onResponse(
+                call: Call<CommandGetResponse>,
+                response: Response<CommandGetResponse>
+            ) {
+                if (response.isSuccessful) {
+                    getAddCommands.onSuccess(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<CommandGetResponse>, t: Throwable) {
+                getAddCommands.onFail(t.localizedMessage!!)
+            }
         })
     }
 

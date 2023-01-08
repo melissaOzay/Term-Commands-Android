@@ -48,8 +48,12 @@
     <fragment
         android:id="@+id/addCommands"
         tools:layout="@layout/fragment_add_commands"
-        android:name="com.example.termcommandsandroid.ui.add.commands.AddCommands"
-        android:label="AddCommands" />
+        android:name="com.example.termcommandsandroid.ui.add.commands.AddCommandsFragment"
+        android:label="AddCommands" >
+        <action
+            android:id="@+id/action_addCommands_to_commandsFragment"
+            app:destination="@id/commandsFragment" />
+    </fragment>
 
 
 </navigation>
