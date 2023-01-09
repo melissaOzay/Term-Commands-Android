@@ -16,6 +16,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.retrofitrecyclerview.ProgressBar.LoadingDialog
 import com.example.termcommandsandroid.R
 import com.example.termcommandsandroid.databinding.ActivityMainBinding
 import com.example.termcommandsandroid.databinding.FragmentCommandBinding
@@ -31,6 +32,7 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 @AndroidEntryPoint
 class CommandsFragment : Fragment() {
     private val viewModel: CommandVM by viewModels()
+    private var loadingDialog: LoadingDialog? = null
     private lateinit var binding: FragmentCommandBinding
     private val recyclerViewAdapter by lazy {
         CommandAdapter()
@@ -39,12 +41,10 @@ class CommandsFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         requireActivity().getWindow()
             .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         binding = FragmentCommandBinding.inflate(inflater, container, false)
@@ -58,18 +58,44 @@ class CommandsFragment : Fragment() {
         recyclerViewAdapter.notifyDataSetChanged()
 
         binding.ivAddBtn.setOnClickListener {
+            showLoading()
             val action =
                 CommandsFragmentDirections.actionCommandsFragmentToAddCommands()
             findNavController().navigate(action)
+            hideLoading()
         }
+
 
         return view
     }
 
+    fun showLoading() {
+        if (loadingDialog == null) {
+            loadingDialog = LoadingDialog(requireContext())
+        }
+
+        loadingDialog?.apply {
+            if (isShowing.not()) {
+                show()
+            }
+        }
+    }
+
+    fun hideLoading() {
+        loadingDialog?.dismiss()
+    }
+
     private fun getAddCommands() {
+        showLoading()
         viewModel.getAddCommands.observe(viewLifecycleOwner) {
             recyclerViewAdapter.setData(it.data as ArrayList<CommandAddList>)
-
+            if (it.data.isEmpty()) {
+                binding.ivEmpty.visibility = View.VISIBLE
+                binding.tvFirst.visibility = View.VISIBLE
+                binding.tvSecond.visibility = View.VISIBLE
+                binding.rv.visibility = View.GONE
+            }
+            hideLoading()
         }
 
         viewModel.failer.observe(viewLifecycleOwner) {

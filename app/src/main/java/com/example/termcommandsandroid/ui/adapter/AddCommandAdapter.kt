@@ -1,5 +1,6 @@
 package com.example.termcommandsandroid.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,8 @@ import com.example.termcommandsandroid.R
 import com.example.termcommandsandroid.domain.entities.request.CreateCommandRequest
 import com.example.termcommandsandroid.domain.entities.response.CommandsList
 
-class AddCommandAdapter() : RecyclerView.Adapter<AddCommandAdapter.CompanyViewHolder>() {
+class AddCommandAdapter(var listener: AddCommandInterface) :
+    RecyclerView.Adapter<AddCommandAdapter.CompanyViewHolder>() {
     private var commandsList = arrayListOf<CreateCommandRequest>()
 
     fun setData(commandsList: ArrayList<CreateCommandRequest>) {
@@ -17,7 +19,7 @@ class AddCommandAdapter() : RecyclerView.Adapter<AddCommandAdapter.CompanyViewHo
         notifyDataSetChanged()
     }
 
-    fun addData(){
+    fun addData() {
         commandsList.add(CreateCommandRequest())
         notifyDataSetChanged()
     }
@@ -40,10 +42,16 @@ class AddCommandAdapter() : RecyclerView.Adapter<AddCommandAdapter.CompanyViewHo
 
     override fun onBindViewHolder(holder: CompanyViewHolder, position: Int) {
         holder.bindItems(commandsList.get(position))
+            listener.empty(holder.edtComComment.text.toString(),holder.edtComName.text.toString())
+
     }
 
     override fun getItemCount(): Int {
         return commandsList.count()
     }
+}
+
+interface AddCommandInterface {
+    fun empty(text1:String,text2: String)
 }
 

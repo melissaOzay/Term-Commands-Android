@@ -14,6 +14,7 @@ class CommandAdapter : RecyclerView.Adapter<CommandAdapter.CompanyViewHolder>() 
 
     fun setData(commandsList: ArrayList<CommandAddList>) {
         this.commandsList = commandsList
+        commandsList.reverse()
         notifyDataSetChanged()
     }
 

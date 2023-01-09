@@ -31,14 +31,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tvToolbar" />
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"
@@ -59,10 +51,60 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_add_24" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivEmpty"
+        android:layout_width="324dp"
+        android:layout_height="212dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginBottom="364dp"
+        android:elevation="2dp"
+        android:visibility="gone"
+        android:tint="#CF4F4F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv"
+        app:layout_constraintVertical_bias="0.87"
+        app:srcCompat="@drawable/ic_baseline_smart_display_red"
+        tools:ignore="MissingConstraints" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvFirst"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="192dp"
+        android:visibility="gone"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="1dp"
+        android:gravity="center_horizontal"
+        android:text="Command List not found"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivEmpty"
+        app:layout_constraintVertical_bias="0.141" />
 
-
-
+    <TextView
+        android:id="@+id/tvSecond"
+        android:layout_width="380dp"
+        android:visibility="gone"
+        android:layout_height="50dp"
+        android:layout_marginStart="192dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="1dp"
+        android:gravity="center_horizontal"
+        android:text="To add your own command list, please click the plus button
+at the top right."
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.544"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFirst"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

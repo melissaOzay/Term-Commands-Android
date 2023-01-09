@@ -13,9 +13,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.termcommandsandroid.databinding.FragmentAddCommandsBinding
+import com.example.termcommandsandroid.dialog.ErrorDialog
 import com.example.termcommandsandroid.domain.entities.request.CommandAddRequest
+import com.example.termcommandsandroid.domain.entities.request.CreateCommandRequest
 import com.example.termcommandsandroid.ui.adapter.AddCommandAdapter
-import com.example.termcommandsandroid.ui.command.CommandsFragmentDirections
+import com.example.termcommandsandroid.ui.adapter.AddCommandInterface
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_commands.view.*
 
@@ -24,11 +26,18 @@ import kotlinx.android.synthetic.main.fragment_add_commands.view.*
 class AddCommandsFragment : Fragment() {
     private val viewModel: AddCommandsVM by viewModels()
     private lateinit var binding: FragmentAddCommandsBinding
+    lateinit var recyclerView: RecyclerView
+    private var commandsList = arrayListOf<CreateCommandRequest>()
     private val recyclerViewAdapter by lazy {
-        AddCommandAdapter()
+        AddCommandAdapter(listener = object : AddCommandInterface {
+            override fun empty(text1: String, text2: String) {
+                errorMessage(text1, text2)
+            }
+
+        })
     }
 
-    lateinit var recyclerView: RecyclerView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,27 +55,38 @@ class AddCommandsFragment : Fragment() {
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        recyclerViewAdapter.setData(arrayListOf())
+        recyclerViewAdapter.setData(commandsList)
         recyclerViewAdapter.addData()
 
         binding.ivAddBtn.setOnClickListener {
             recyclerViewAdapter.addData()
+
         }
+
+        return view
+    }
+
+    fun errorMessage(text1: String, text2: String) {
         binding.tvSave.setOnClickListener {
             recyclerView.adapter = recyclerViewAdapter
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             recyclerViewAdapter.setData(arrayListOf())
-            var title= binding.edtTerCom.text.toString()
-            viewModel.addCommands(CommandAddRequest(arrayListOf(),title))
-            val action =
-                AddCommandsFragmentDirections.actionAddCommandsToCommandsFragment()
-            findNavController().navigate(action)
-            recyclerViewAdapter.notifyDataSetChanged()
+            var title = binding.edtTerCom.text.toString()
+
+            if (title.isEmpty() || text1.isEmpty() || text2.isEmpty()) {
+                ErrorDialog.newInstance().show(
+                    childFragmentManager, ErrorDialog.Companion::class.java.simpleName
+                )
+            } else if (title.isNotEmpty() && text1.isNotEmpty() && text2.isNotEmpty()) {
+                viewModel.addCommands(CommandAddRequest(listOf(CreateCommandRequest(text1,"",text2)), title))
+                val action =
+                    AddCommandsFragmentDirections.actionAddCommandsToCommandsFragment()
+                findNavController().navigate(action)
+                recyclerViewAdapter.notifyDataSetChanged()
+
+            }
         }
-
-
-        return view
     }
 
     private fun commands() {
