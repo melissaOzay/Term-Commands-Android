@@ -11,7 +11,7 @@ import android.view.WindowManager
 import com.example.termcommandsandroid.R
 
 
-class LoadingDialog(context: Context) : Dialog(context){
+class LoadingDialog(context: Context) : Dialog(context) {
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -28,4 +28,13 @@ class LoadingDialog(context: Context) : Dialog(context){
         setContentView(R.layout.dialog_loading)
     }
 
+    fun showLoading() {
+        if (isShowing.not()) {
+            show()
+        }
+    }
+
+    fun hideLoading() {
+        dismiss()
+    }
 }

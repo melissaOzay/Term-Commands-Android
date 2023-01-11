@@ -75,7 +75,5 @@ object UserInfoModules {
     @Singleton
     fun provideUserInfoRepository(apiService: RestApi): TermRepository {
         return TermRepositoryImpl(apiService)
-
-        //nesnelerin oluşturma kurallarının belirlendiği yer
     }
 }

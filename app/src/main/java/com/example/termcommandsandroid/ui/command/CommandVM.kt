@@ -12,12 +12,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CommandVM @Inject constructor(
-    val commandsUseCase: CommandUseCase,
     val getAddCommandsUseCase: GetAddCommandsUseCase
 ) : ViewModel() {
-
     val failer = MutableLiveData<String>()
-    val commandsListInfo = MutableLiveData<CommandsResponse>()
     val getAddCommands = MutableLiveData<CommandGetResponse>()
     fun getCommands() {
         getAddCommandsUseCase.getAddCommands(object : GetAddCommandsInterface {

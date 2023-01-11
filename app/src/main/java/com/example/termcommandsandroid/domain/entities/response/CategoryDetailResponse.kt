@@ -3,7 +3,7 @@ package com.example.termcommandsandroid.domain.entities.response
 
 import com.google.gson.annotations.SerializedName
 
-data class CategoryDeatilResponse(
+data class CategoryDetailResponse(
     @SerializedName("code")
     val code: Int,
     @SerializedName("data")

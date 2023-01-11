@@ -7,10 +7,10 @@ import com.example.termcommandsandroid.domain.entities.request.CommandAddRequest
 
 interface TermRepository {
     fun account(createGiftRequest:AccountsRequest,accountInterface: AccountInterface)
-    fun categories(accountInterface: CategoriesInterface)
+    fun getCategories(accountInterface: CategoriesInterface)
+    fun getCategoryDetail(categoryId:String,categoriesDetailInterface: CategoriesDetailInterface)
     fun getCommand(commandTitle :String,commandInterface: CommandsInterface)
     fun postCommands(addCommandRequest: CommandAddRequest, addCommandsInterface: AddCommandsInterface)
-    fun getCategoryDetail(categoryId:String,categoriesDetailInterface: CategoriesDetailInterface)
     fun getAddCommands(getAddCommands:GetAddCommandsInterface)
 
 

@@ -61,32 +61,34 @@ class HomeFragment : Fragment() {
         val view = binding.root
         requireActivity().getWindow()
             .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-        binding.toolbarText.searchText("Type command name or description")
-        binding.toolbarText.toolbarText("Terminal Commands")
-        binding.toolbarText.search(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                if (newText.isNotEmpty()) {
-                    search()
-                    homeFragmentViewModel.search(newText)
-                    recyclerView = view.rv
-                    recyclerView.adapter = rvCategotiesAdapter
-                    recyclerView.layoutManager =
-                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                    rvCategotiesAdapter.notifyDataSetChanged()
-                } else {
-                    recyclerView = view.rv
-                    homeRecyclerView()
-                    recyclerViewAdapter.notifyDataSetChanged()
+        with(binding){
+            toolbarText.searchText("Type command name or description")
+            toolbarText.toolbarText("Terminal Commands")
+            toolbarText.search(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(p0: String): Boolean {
+                    return false
                 }
 
-                return false
-            }
+                override fun onQueryTextChange(newText: String): Boolean {
+                    if (newText.isNotEmpty()) {
+                        search()
+                        homeFragmentViewModel.search(newText)
+                        recyclerView = view.rv
+                        recyclerView.adapter = rvCategotiesAdapter
+                        recyclerView.layoutManager =
+                            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                        rvCategotiesAdapter.notifyDataSetChanged()
+                    } else {
+                        recyclerView = view.rv
+                        homeRecyclerView()
+                        recyclerViewAdapter.notifyDataSetChanged()
+                    }
 
+                    return false
+                }
         })
+
+        }
         recyclerView = view.rv
         homeRecyclerView()
         recyclerViewAdapter.onItemClick = {
@@ -123,16 +125,11 @@ class HomeFragment : Fragment() {
         if (loadingDialog == null) {
             loadingDialog = LoadingDialog(requireContext())
         }
-
-        loadingDialog?.apply {
-            if (isShowing.not()) {
-                show()
-            }
-        }
+        loadingDialog?.showLoading()
     }
 
     fun hideLoading() {
-        loadingDialog?.dismiss()
+        loadingDialog?.hideLoading()
     }
 
     private fun categories() {

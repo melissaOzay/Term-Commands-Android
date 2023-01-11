@@ -8,6 +8,6 @@ class CategoriesUseCase @Inject constructor(
     private val userRepository: TermRepository
 ) {
     fun categories(categoriInterface: CategoriesInterface) =
-        userRepository.categories( categoriInterface)
+        userRepository.getCategories( categoriInterface)
 
 }

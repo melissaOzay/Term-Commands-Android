@@ -29,7 +29,7 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
             }
         })
     }
-    override fun categories(categoriesInterface: CategoriesInterface) {
+    override fun getCategories(categoriesInterface: CategoriesInterface) {
         apiService.getCategories().enqueue(object : Callback<CategoriesResponse> {
             override fun onResponse(
                 call: Call<CategoriesResponse>,
@@ -46,17 +46,17 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
         })
     }
     override fun getCommand(commandTitle :String,commandInterface: CommandsInterface) {
-        apiService.getCommands(commandTitle).enqueue(object : Callback<CategoryDeatilResponse> {
+        apiService.getCategoriesDetail(commandTitle).enqueue(object : Callback<CategoryDetailResponse> {
             override fun onResponse(
-                call: Call<CategoryDeatilResponse>,
-                response: Response<CategoryDeatilResponse>
+                call: Call<CategoryDetailResponse>,
+                response: Response<CategoryDetailResponse>
             ) {
                 if (response.isSuccessful) {
                     commandInterface.onSuccess(response.body()!!)
                 }
             }
 
-            override fun onFailure(call: Call<CategoryDeatilResponse>, t: Throwable) {
+            override fun onFailure(call: Call<CategoryDetailResponse>, t: Throwable) {
                 commandInterface.onFail(t.localizedMessage!!)
             }
         })
@@ -80,17 +80,17 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
     }
 
     override fun getCategoryDetail(categoryId: String,categoriesDetailInterface: CategoriesDetailInterface) {
-        apiService.getCategoryDetail(categoryId).enqueue(object : Callback<CategoryDeatilResponse> {
+        apiService.getCategoryDetail(categoryId).enqueue(object : Callback<CategoryDetailResponse> {
             override fun onResponse(
-                call: Call<CategoryDeatilResponse>,
-                response: Response<CategoryDeatilResponse>
+                call: Call<CategoryDetailResponse>,
+                response: Response<CategoryDetailResponse>
             ) {
                 if (response.isSuccessful) {
                     categoriesDetailInterface.onSuccess(response.body()!!)
                 }
             }
 
-            override fun onFailure(call: Call<CategoryDeatilResponse>, t: Throwable) {
+            override fun onFailure(call: Call<CategoryDetailResponse>, t: Throwable) {
                 categoriesDetailInterface.onFail(t.localizedMessage!!)
             }
 

@@ -73,7 +73,7 @@ class CategoriesFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                    categoriesViewModel.search(newText)
+                categoriesViewModel.search(newText)
                 return false
             }
 
@@ -87,16 +87,11 @@ class CategoriesFragment : Fragment() {
         if (loadingDialog == null) {
             loadingDialog = LoadingDialog(requireContext())
         }
-
-        loadingDialog?.apply {
-            if (isShowing.not()) {
-                show()
-            }
-        }
+        loadingDialog?.showLoading()
     }
 
     fun hideLoading() {
-        loadingDialog?.dismiss()
+        loadingDialog?.hideLoading()
     }
 
     private fun categoriesDetail() {
@@ -107,8 +102,8 @@ class CategoriesFragment : Fragment() {
             hideLoading()
         }
 
-        categoriesViewModel.searchcategoriesListInfo.observe(this){
-            recyclerViewAdapter.setData(it as  ArrayList<CategoryDetailList>)
+        categoriesViewModel.searchCategoriesListInfo.observe(this) {
+            recyclerViewAdapter.setData(it as ArrayList<CategoryDetailList>)
         }
         categoriesViewModel.failer.observe(this) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()

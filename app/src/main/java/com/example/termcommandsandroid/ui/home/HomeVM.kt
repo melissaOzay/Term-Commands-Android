@@ -22,7 +22,7 @@ class HomeVM @Inject constructor(
 ) : ViewModel() {
 
     val accountListInfo = MutableLiveData<AccountResponse>()
-    val commandsListInfo = MutableLiveData<CategoryDeatilResponse>()
+    val commandsListInfo = MutableLiveData<CategoryDetailResponse>()
     val categoriesListInfo = MutableLiveData<CategoriesResponse>()
     val failer = MutableLiveData<String>()
     fun account(accountRequest: AccountsRequest) {
@@ -50,10 +50,11 @@ class HomeVM @Inject constructor(
 
         })
     }
-    fun search(query:String){
-        commandsUseCase.commands(query,object:CommandsInterface{
-            override fun onSuccess(data: CategoryDeatilResponse) {
-            commandsListInfo.postValue(data)
+
+    fun search(query: String) {
+        commandsUseCase.commands(query, object : CommandsInterface {
+            override fun onSuccess(data: CategoryDetailResponse) {
+                commandsListInfo.postValue(data)
             }
 
             override fun onFail(message: String) {

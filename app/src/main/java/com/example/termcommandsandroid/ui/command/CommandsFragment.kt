@@ -73,16 +73,11 @@ class CommandsFragment : Fragment() {
         if (loadingDialog == null) {
             loadingDialog = LoadingDialog(requireContext())
         }
-
-        loadingDialog?.apply {
-            if (isShowing.not()) {
-                show()
-            }
-        }
+        loadingDialog?.showLoading()
     }
 
     fun hideLoading() {
-        loadingDialog?.dismiss()
+        loadingDialog?.hideLoading()
     }
 
     private fun getAddCommands() {
@@ -90,11 +85,14 @@ class CommandsFragment : Fragment() {
         viewModel.getAddCommands.observe(viewLifecycleOwner) {
             recyclerViewAdapter.setData(it.data as ArrayList<CommandAddList>)
             if (it.data.isEmpty()) {
-                binding.ivEmpty.visibility = View.VISIBLE
-                binding.tvFirst.visibility = View.VISIBLE
-                binding.tvSecond.visibility = View.VISIBLE
-                binding.rv.visibility = View.GONE
+                with(binding) {
+                    ivEmpty.visibility = View.VISIBLE
+                    tvFirst.visibility = View.VISIBLE
+                    tvSecond.visibility = View.VISIBLE
+                    rv.visibility = View.GONE
+                }
             }
+
             hideLoading()
         }
 
