@@ -1,24 +1,17 @@
 package com.example.termcommandsandroid.ui.command
 
 import android.os.Bundle
-import android.service.controls.actions.CommandAction
-import android.text.TextUtils.isEmpty
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.core.view.isEmpty
-import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitrecyclerview.ProgressBar.LoadingDialog
-import com.example.termcommandsandroid.R
-import com.example.termcommandsandroid.databinding.ActivityMainBinding
 import com.example.termcommandsandroid.databinding.FragmentCommandBinding
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.CategoriesList

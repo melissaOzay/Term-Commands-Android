@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.termcommandsandroid.`interface`.AccountInterface
 import com.example.termcommandsandroid.`interface`.CategoriesInterface
 import com.example.termcommandsandroid.`interface`.CommandsInterface
+import com.example.termcommandsandroid.base.BaseViewModel
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
 import com.example.termcommandsandroid.domain.entities.response.*
 import com.example.termcommandsandroid.domain.usecase.AccountUseCase
@@ -19,7 +20,7 @@ class HomeVM @Inject constructor(
     val categoriesUseCase: CategoriesUseCase,
     val commandsUseCase: CommandUseCase
 
-) : ViewModel() {
+)  : BaseViewModel( ) {
 
     val accountListInfo = MutableLiveData<AccountResponse>()
     val commandsListInfo = MutableLiveData<CategoryDetailResponse>()
