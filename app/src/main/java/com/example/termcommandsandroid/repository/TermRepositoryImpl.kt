@@ -11,7 +11,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): TermRepository {
+class TermRepositoryImpl @Inject constructor(private val apiService: RestApi) : TermRepository {
 
     override fun account(createGiftRequest: AccountsRequest, accountInterface: AccountInterface) {
         apiService.postAccounts(createGiftRequest).enqueue(object : Callback<AccountResponse> {
@@ -29,6 +29,7 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
             }
         })
     }
+
     override fun getCategories(categoriesInterface: CategoriesInterface) {
         apiService.getCategories().enqueue(object : Callback<CategoriesResponse> {
             override fun onResponse(
@@ -45,24 +46,29 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
             }
         })
     }
-    override fun getCommand(commandTitle :String,commandInterface: CommandsInterface) {
-        apiService.getCategoriesDetail(commandTitle).enqueue(object : Callback<CategoryDetailResponse> {
-            override fun onResponse(
-                call: Call<CategoryDetailResponse>,
-                response: Response<CategoryDetailResponse>
-            ) {
-                if (response.isSuccessful) {
-                    commandInterface.onSuccess(response.body()!!)
-                }
-            }
 
-            override fun onFailure(call: Call<CategoryDetailResponse>, t: Throwable) {
-                commandInterface.onFail(t.localizedMessage!!)
-            }
-        })
+    override fun getCommand(commandTitle: String, commandInterface: CommandsInterface) {
+        apiService.getCategoriesDetail(commandTitle)
+            .enqueue(object : Callback<CategoryDetailResponse> {
+                override fun onResponse(
+                    call: Call<CategoryDetailResponse>,
+                    response: Response<CategoryDetailResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        commandInterface.onSuccess(response.body()!!)
+                    }
+                }
+
+                override fun onFailure(call: Call<CategoryDetailResponse>, t: Throwable) {
+                    commandInterface.onFail(t.localizedMessage!!)
+                }
+            })
     }
 
-    override fun postCommands(addCommandRequest:CommandAddRequest, addCommandsInterface: AddCommandsInterface) {
+    override fun postCommands(
+        addCommandRequest: CommandAddRequest,
+        addCommandsInterface: AddCommandsInterface
+    ) {
         apiService.postCategories(addCommandRequest).enqueue(object : Callback<CommandResponse> {
             override fun onResponse(
                 call: Call<CommandResponse>,
@@ -79,7 +85,10 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
         })
     }
 
-    override fun getCategoryDetail(categoryId: String,categoriesDetailInterface: CategoriesDetailInterface) {
+    override fun getCategoryDetail(
+        categoryId: String,
+        categoriesDetailInterface: CategoriesDetailInterface
+    ) {
         apiService.getCategoryDetail(categoryId).enqueue(object : Callback<CategoryDetailResponse> {
             override fun onResponse(
                 call: Call<CategoryDetailResponse>,
@@ -97,20 +106,41 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi): T
         })
     }
 
-    override fun getAddCommands(getAddCommands: GetAddCommandsInterface) {
+    override fun getAddCommands(getAddCommandsInterface: GetAddCommandsInterface) {
         apiService.getCategoriesCommand().enqueue(object : Callback<CommandGetResponse> {
             override fun onResponse(
                 call: Call<CommandGetResponse>,
                 response: Response<CommandGetResponse>
             ) {
                 if (response.isSuccessful) {
-                    getAddCommands.onSuccess(response.body()!!)
+                    getAddCommandsInterface.onSuccess(response.body()!!)
                 }
             }
 
             override fun onFailure(call: Call<CommandGetResponse>, t: Throwable) {
-                getAddCommands.onFail(t.localizedMessage!!)
+                getAddCommandsInterface.onFail(t.localizedMessage!!)
             }
+        })
+    }
+
+    override fun getCommandsDetail(
+        commandId: String,
+        categoriesDetailInterface: CommandsDetailInterface
+    ) {
+        apiService.getCommandsDetail(commandId).enqueue(object :Callback<CommandDetailResponse>{
+            override fun onResponse(
+                call: Call<CommandDetailResponse>,
+                response: Response<CommandDetailResponse>
+            ) {
+                if(response.isSuccessful){
+                    categoriesDetailInterface.onSuccess(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<CommandDetailResponse>, t: Throwable) {
+                categoriesDetailInterface.onFail(t.localizedMessage!!)
+            }
+
         })
     }
 

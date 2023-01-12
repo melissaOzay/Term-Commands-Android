@@ -1,29 +1,34 @@
 package com.example.termcommandsandroid.ui.command
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mywords.utility.CommonUtility
 import com.example.termcommandsandroid.base.BaseFragment
 import com.example.termcommandsandroid.databinding.FragmentCommandBinding
 import com.example.termcommandsandroid.domain.entities.response.CommandAddList
-import com.example.termcommandsandroid.ui.adapter.CommandAdapter
+import com.example.termcommandsandroid.ui.adapter.*
+import com.example.termcommandsandroid.ui.home.HomeFragmentArgs
+import com.example.termcommandsandroid.ui.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_command.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 @AndroidEntryPoint
 class CommandsFragment : BaseFragment<FragmentCommandBinding, CommandVM>() {
+    val args: CommandsFragmentArgs by navArgs()
     private val recyclerViewAdapter by lazy {
         CommandAdapter()
     }
     override val viewModel: CommandVM by viewModels()
     lateinit var recyclerView: RecyclerView
-
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,6 +46,16 @@ class CommandsFragment : BaseFragment<FragmentCommandBinding, CommandVM>() {
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerViewAdapter.notifyDataSetChanged()
+        recyclerViewAdapter.onItemClick = {
+            navigate(
+                CommandsFragmentDirections.actionCommandsFragmentToCommandsDetailFragment(
+                    it.id,
+                    it.listTitle
+                )
+            )
+            Log.e("id", "${it.id}")
+
+        }
 
     }
 

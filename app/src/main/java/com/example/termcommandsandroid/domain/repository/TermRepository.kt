@@ -11,7 +11,8 @@ interface TermRepository {
     fun getCategoryDetail(categoryId:String,categoriesDetailInterface: CategoriesDetailInterface)
     fun getCommand(commandTitle :String,commandInterface: CommandsInterface)
     fun postCommands(addCommandRequest: CommandAddRequest, addCommandsInterface: AddCommandsInterface)
-    fun getAddCommands(getAddCommands:GetAddCommandsInterface)
+    fun getAddCommands(getAddCommandsInterface:GetAddCommandsInterface)
+    fun getCommandsDetail(commandId:String,categoriesDetailInterface:CommandsDetailInterface)
 
 
 }

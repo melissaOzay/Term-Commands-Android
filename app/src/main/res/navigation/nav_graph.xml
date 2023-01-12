@@ -24,13 +24,20 @@
         tools:layout="@layout/fragment_command"
         android:name="com.example.termcommandsandroid.ui.command.CommandsFragment"
         android:label="CommandsFragment" >
+        <argument
+            android:name="id"
+            android:defaultValue='""'
+            app:argType="string" />
         <action
             android:id="@+id/action_commandsFragment_to_addCommands"
             app:destination="@id/addCommands" />
+        <action
+            android:id="@+id/action_commandsFragment_to_commandsDetailFragment"
+            app:destination="@id/commandsDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.example.termcommandsandroid.ui.category.detail.CategoriesFragment"
+        android:name="com.example.termcommandsandroid.ui.home.detail.CategoriesFragment"
         android:label="fragment_categories"
         tools:layout="@layout/fragment_categories" >
         <argument
@@ -53,6 +60,18 @@
         <action
             android:id="@+id/action_addCommands_to_commandsFragment"
             app:destination="@id/commandsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/commandsDetailFragment"
+        tools:layout="@layout/fragment_command_detail"
+        android:name="com.example.termcommandsandroid.ui.command.detail.CommandsDetailFragment"
+        android:label="CommandsDetailFragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="commant"
+            app:argType="string" />
     </fragment>
 
 

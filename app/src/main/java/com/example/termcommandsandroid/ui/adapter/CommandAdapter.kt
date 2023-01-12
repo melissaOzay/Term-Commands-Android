@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.termcommandsandroid.R
+import com.example.termcommandsandroid.domain.entities.response.CategoriesList
 import com.example.termcommandsandroid.domain.entities.response.CommandAddList
 import com.example.termcommandsandroid.domain.entities.response.CommandsList
 
 class CommandAdapter : RecyclerView.Adapter<CommandAdapter.CompanyViewHolder>() {
     private var commandsList = arrayListOf<CommandAddList>()
-
+    var onItemClick: ((CommandAddList) -> Unit)? = null
     fun setData(commandsList: ArrayList<CommandAddList>) {
         this.commandsList = commandsList
         commandsList.reverse()
@@ -33,7 +34,11 @@ class CommandAdapter : RecyclerView.Adapter<CommandAdapter.CompanyViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: CompanyViewHolder, position: Int) {
+        val commandDetailList=commandsList[position]
         holder.bindItems(commandsList.get(position))
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(commandDetailList)
+        }
     }
 
     override fun getItemCount(): Int {

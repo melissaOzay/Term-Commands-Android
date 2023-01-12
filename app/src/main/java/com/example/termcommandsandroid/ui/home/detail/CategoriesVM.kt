@@ -1,7 +1,6 @@
-package com.example.termcommandsandroid.ui.category.detail
+package com.example.termcommandsandroid.ui.home.detail
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.termcommandsandroid.`interface`.CategoriesDetailInterface
 import com.example.termcommandsandroid.base.BaseViewModel
 import com.example.termcommandsandroid.domain.entities.response.CategoryDetailResponse
