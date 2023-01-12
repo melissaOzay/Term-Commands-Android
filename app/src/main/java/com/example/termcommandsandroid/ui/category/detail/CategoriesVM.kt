@@ -3,6 +3,7 @@ package com.example.termcommandsandroid.ui.category.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.termcommandsandroid.`interface`.CategoriesDetailInterface
+import com.example.termcommandsandroid.base.BaseViewModel
 import com.example.termcommandsandroid.domain.entities.response.CategoryDetailResponse
 import com.example.termcommandsandroid.domain.entities.response.CategoryDetailList
 import com.example.termcommandsandroid.domain.usecase.CategoriesDetailUseCase
@@ -13,14 +14,16 @@ import javax.inject.Inject
 @HiltViewModel
 class CategoriesVM @Inject constructor(
     val categoriesDetailUseCase: CategoriesDetailUseCase
-) : ViewModel() {
+) : BaseViewModel() {
     val categoriesListInfo = MutableLiveData<CategoryDetailResponse>()
     val searchCategoriesListInfo = MutableLiveData<List<CategoryDetailList>>()
     val failer = MutableLiveData<String>()
 
     fun getCategoriesDetail(categoryId: String) {
+        showLoading().equals(true)
         categoriesDetailUseCase.categoriesDetail(categoryId, object : CategoriesDetailInterface {
             override fun onSuccess(data: CategoryDetailResponse) {
+                hideLoading().equals(false)
                 categoriesListInfo.postValue(data)
             }
 
@@ -35,9 +38,13 @@ class CategoriesVM @Inject constructor(
         val list = categoriesListInfo.value?.data?.filter {
             it.title.contains(query)
         } ?: emptyList()
+        showLoading().equals(true)
         if (query.isEmpty()) {
+            hideLoading().equals(false)
             categoriesListInfo.postValue(categoriesListInfo.value)
+
         } else {
+            hideLoading().equals(false)
             searchCategoriesListInfo.value = list
         }
     }

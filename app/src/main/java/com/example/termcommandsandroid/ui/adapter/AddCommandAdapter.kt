@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.termcommandsandroid.R
 import com.example.termcommandsandroid.domain.entities.request.CreateCommandRequest
 import com.example.termcommandsandroid.domain.entities.response.CommandsList
 
-class AddCommandAdapter(var listener: AddCommandInterface) :
+class AddCommandAdapter() :
     RecyclerView.Adapter<AddCommandAdapter.CompanyViewHolder>() {
     private var commandsList = arrayListOf<CreateCommandRequest>()
 
@@ -19,6 +20,9 @@ class AddCommandAdapter(var listener: AddCommandInterface) :
         notifyDataSetChanged()
     }
 
+    fun getCommandList():List<CreateCommandRequest>{
+        return commandsList
+    }
     fun addData() {
         commandsList.add(CreateCommandRequest())
         notifyDataSetChanged()
@@ -27,7 +31,13 @@ class AddCommandAdapter(var listener: AddCommandInterface) :
     class CompanyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val edtComComment = view.findViewById<TextView>(R.id.edtComComment)
         val edtComName = view.findViewById<TextView>(R.id.edtComName)
-        fun bindItems(item: CreateCommandRequest) {
+        fun bindItems(item: CreateCommandRequest,position: Int,commandsList: ArrayList<CreateCommandRequest>) {
+            edtComName.addTextChangedListener {
+                commandsList[position].title  = it.toString()
+            }
+            edtComComment.addTextChangedListener{
+                commandsList[position].description  = it.toString()
+            }
             edtComComment.text = item.description
             edtComName.text = item.title
         }
@@ -41,17 +51,10 @@ class AddCommandAdapter(var listener: AddCommandInterface) :
     }
 
     override fun onBindViewHolder(holder: CompanyViewHolder, position: Int) {
-        holder.bindItems(commandsList.get(position))
-            listener.empty(holder.edtComComment.text.toString(),holder.edtComName.text.toString())
-
+        holder.bindItems(commandsList.get(position),position,commandsList)
     }
 
     override fun getItemCount(): Int {
         return commandsList.count()
     }
 }
-
-interface AddCommandInterface {
-    fun empty(text1:String,text2: String)
-}
-

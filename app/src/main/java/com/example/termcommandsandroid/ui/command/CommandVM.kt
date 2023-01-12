@@ -3,6 +3,7 @@ package com.example.termcommandsandroid.ui.command
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.termcommandsandroid.`interface`.GetAddCommandsInterface
+import com.example.termcommandsandroid.base.BaseViewModel
 import com.example.termcommandsandroid.domain.entities.response.CommandGetResponse
 import com.example.termcommandsandroid.domain.entities.response.CommandsResponse
 import com.example.termcommandsandroid.domain.usecase.CommandUseCase
@@ -13,12 +14,14 @@ import javax.inject.Inject
 @HiltViewModel
 class CommandVM @Inject constructor(
     val getAddCommandsUseCase: GetAddCommandsUseCase
-) : ViewModel() {
+)  : BaseViewModel( ) {
     val failer = MutableLiveData<String>()
     val getAddCommands = MutableLiveData<CommandGetResponse>()
     fun getCommands() {
+        showLoading().equals(true)
         getAddCommandsUseCase.getAddCommands(object : GetAddCommandsInterface {
             override fun onSuccess(data: CommandGetResponse) {
+                hideLoading().equals(false)
                 getAddCommands.postValue(data)
             }
 

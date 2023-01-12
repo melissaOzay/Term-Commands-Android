@@ -2,6 +2,7 @@ package com.example.termcommandsandroid.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.retrofitrecyclerview.ProgressBar.LoadingDialog
 import com.example.termcommandsandroid.`interface`.AccountInterface
 import com.example.termcommandsandroid.`interface`.CategoriesInterface
 import com.example.termcommandsandroid.`interface`.CommandsInterface
@@ -21,7 +22,6 @@ class HomeVM @Inject constructor(
     val commandsUseCase: CommandUseCase
 
 )  : BaseViewModel( ) {
-
     val accountListInfo = MutableLiveData<AccountResponse>()
     val commandsListInfo = MutableLiveData<CategoryDetailResponse>()
     val categoriesListInfo = MutableLiveData<CategoriesResponse>()
@@ -40,8 +40,10 @@ class HomeVM @Inject constructor(
     }
 
     fun getData() {
+        showLoading().equals(true)
         categoriesUseCase.categories(object : CategoriesInterface {
             override fun onSuccess(data: CategoriesResponse) {
+                hideLoading().equals(false)
                 categoriesListInfo.postValue(data)
             }
 
@@ -53,8 +55,10 @@ class HomeVM @Inject constructor(
     }
 
     fun search(query: String) {
+        showLoading().equals(true)
         commandsUseCase.commands(query, object : CommandsInterface {
             override fun onSuccess(data: CategoryDetailResponse) {
+                hideLoading().equals(false)
                 commandsListInfo.postValue(data)
             }
 

@@ -7,26 +7,26 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mywords.utility.CommonUtility
 import com.example.retrofitrecyclerview.ProgressBar.LoadingDialog
+import com.example.termcommandsandroid.base.BaseFragment
 import com.example.termcommandsandroid.databinding.FragmentCategoriesBinding
+import com.example.termcommandsandroid.databinding.FragmentCommandBinding
 import com.example.termcommandsandroid.domain.entities.response.CategoryDetailList
 import com.example.termcommandsandroid.ui.adapter.CategoriesDetailAdapter
 import com.example.termcommandsandroid.ui.adapter.CategoriesDetailListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_categories.*
 import kotlinx.android.synthetic.main.fragment_categories.view.*
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class CategoriesFragment : Fragment() {
-    private lateinit var binding: FragmentCategoriesBinding
-    private var loadingDialog: LoadingDialog? = null
-    private val categoriesViewModel: CategoriesVM by viewModels()
+class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVM>() {
+    override val viewModel: CategoriesVM by viewModels()
     val args: CategoriesFragmentArgs by navArgs()
     private val recyclerViewAdapter by lazy {
         CategoriesDetailAdapter(listener = object : CategoriesDetailListener {
@@ -42,27 +42,20 @@ class CategoriesFragment : Fragment() {
         })
     }
     lateinit var recyclerView: RecyclerView
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        categoriesDetail()
-
-        args.let {
-            categoriesViewModel.getCategoriesDetail(it.id)
-        }
-
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        attachToParent: Boolean
+    ): FragmentCategoriesBinding {
+        return FragmentCategoriesBinding.inflate(inflater, container, attachToParent)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        requireActivity().getWindow()
-            .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-        binding = FragmentCategoriesBinding.inflate(inflater, container, false)
-        val view = binding.root
+    override fun initUI() {
+        super.initUI()
+        categoriesDetail()
         binding.toolbarText.searchText("Type command name or description")
         binding.toolbarText.toolbarText(args.commant)
-        recyclerView = view.rvCategories
+        recyclerView = view.let { rvCategories }
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -73,39 +66,28 @@ class CategoriesFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                categoriesViewModel.search(newText)
+                viewModel.search(newText)
                 return false
             }
 
         })
 
-        return view
-    }
-
-
-    fun showLoading() {
-        if (loadingDialog == null) {
-            loadingDialog = LoadingDialog(requireContext())
+        args.let {
+            viewModel.getCategoriesDetail(it.id)
         }
-        loadingDialog?.showLoading()
     }
 
-    fun hideLoading() {
-        loadingDialog?.hideLoading()
-    }
 
     private fun categoriesDetail() {
-        showLoading()
-        categoriesViewModel.categoriesListInfo.observe(this) {
+        viewModel.categoriesListInfo.observe(this) {
             recyclerViewAdapter.setData(it.data as ArrayList<CategoryDetailList>)
             recyclerViewAdapter.notifyDataSetChanged()
-            hideLoading()
         }
 
-        categoriesViewModel.searchCategoriesListInfo.observe(this) {
+        viewModel.searchCategoriesListInfo.observe(this) {
             recyclerViewAdapter.setData(it as ArrayList<CategoryDetailList>)
         }
-        categoriesViewModel.failer.observe(this) {
+        viewModel.failer.observe(this) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
 
