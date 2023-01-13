@@ -62,11 +62,9 @@ class CommandsFragment : BaseFragment<FragmentCommandBinding, CommandVM>() {
     override fun onStart() {
         super.onStart()
         viewModel.getCommands()
-        recyclerView = view.let { rv }
-        recyclerView.adapter = recyclerViewAdapter
-        recyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        recyclerViewAdapter.notifyDataSetChanged()    }
+        recyclerViewAdapter.notifyDataSetChanged()
+
+    }
 
     override fun setListeners() {
         super.setListeners()

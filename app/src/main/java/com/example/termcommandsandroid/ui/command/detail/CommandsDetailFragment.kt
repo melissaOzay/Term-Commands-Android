@@ -49,6 +49,7 @@ class CommandsDetailFragment : BaseFragment<FragmentCommandDetailBinding, Comman
         categoriesDetail()
         binding.toolbarText.searchText("Type command name or description")
         binding.toolbarText.toolbarText(args.commant)
+        binding.toolbarText.searhVisibility()
         recyclerView = view.let { rvCommand }
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager =

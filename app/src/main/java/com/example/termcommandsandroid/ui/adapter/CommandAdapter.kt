@@ -17,8 +17,9 @@ class CommandAdapter : RecyclerView.Adapter<CommandAdapter.CompanyViewHolder>() 
         this.commandsList = commandsList
         commandsList.reverse()
         notifyDataSetChanged()
-    }
 
+
+    }
     class CompanyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameText = view.findViewById<TextView>(R.id.tvCommand)
         fun bindItems(item: CommandAddList) {

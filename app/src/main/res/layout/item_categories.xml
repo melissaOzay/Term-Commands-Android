@@ -44,22 +44,24 @@
         android:layout_width="293dp"
         android:layout_height="21dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="TextView"
         android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/ivHome"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCommand" />
 
     <TextView
         android:id="@+id/tvCommand"
         android:layout_width="293dp"
         android:layout_height="21dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:text="TextView"
         android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tvtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/ivHome"
