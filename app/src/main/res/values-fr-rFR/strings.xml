@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TermCommandsAndroid</string>
+    <string name="home">Page d\'accueil</string>
+    <string name="my_Commands">Mes commandes</string>
+    <string name="others">Autre</string>
+    <string name="home_search">Saisissez le nom ou la description de la commande</string>
+    <string name="home_title">Commandes du terminal</string>
+    <string name="commmand_message">Copié</string>
+    <string name="commmand_search">Saisissez le nom ou la description de la commande</string>
+    <string name="commmand_cancel">"Annuler "</string>
+    <string name="commmand_save">"Sauver "</string>
+    <string name="commmand_title">Nom de la liste de commandes</string>
+    <string name="commmand_hint">Ex : Commandes de terminal</string>
+    <string name="commmand_btn">Ajouter une commande</string>
+    <string name="commmand_description">Description de la commande</string>
+    <string name="commmand_name">Nom de la commande</string>
+    <string name="others_title">Autre</string>
+    <string name="others_language">" Langue"</string>
+    <string name="others_notification">"Avis "</string>
+    <string name="others_language_choose">Veuillez sélectionner la langue</string>
+    <string name="error_title">"Erreur "</string>
+    <string name="error_command">Assurez-vous que tous les champs sont remplis !</string>
+</resources>
