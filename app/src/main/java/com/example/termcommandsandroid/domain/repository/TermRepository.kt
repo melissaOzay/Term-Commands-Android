@@ -13,6 +13,7 @@ interface TermRepository {
     fun postCommands(addCommandRequest: CommandAddRequest, addCommandsInterface: AddCommandsInterface)
     fun getAddCommands(getAddCommandsInterface:GetAddCommandsInterface)
     fun getCommandsDetail(commandId:String,categoriesDetailInterface:CommandsDetailInterface)
+    fun getLanguage(getAddCommandsInterface:GetLanguageInterface)
 
 
 }

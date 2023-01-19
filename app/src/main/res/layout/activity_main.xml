@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/black"
+        android:background="#292E3A"
         app:itemIconTint="@drawable/selector_nav_item"
         app:itemTextColor="@drawable/selector_nav_item"
         app:layout_constraintBottom_toBottomOf="parent"

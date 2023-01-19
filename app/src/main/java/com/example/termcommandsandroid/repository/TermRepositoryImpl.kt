@@ -127,18 +127,36 @@ class TermRepositoryImpl @Inject constructor(private val apiService: RestApi) : 
         commandId: String,
         categoriesDetailInterface: CommandsDetailInterface
     ) {
-        apiService.getCommandsDetail(commandId).enqueue(object :Callback<CommandDetailResponse>{
+        apiService.getCommandsDetail(commandId).enqueue(object : Callback<CommandDetailResponse> {
             override fun onResponse(
                 call: Call<CommandDetailResponse>,
                 response: Response<CommandDetailResponse>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     categoriesDetailInterface.onSuccess(response.body()!!)
                 }
             }
 
             override fun onFailure(call: Call<CommandDetailResponse>, t: Throwable) {
                 categoriesDetailInterface.onFail(t.localizedMessage!!)
+            }
+
+        })
+    }
+
+    override fun getLanguage(getAddCommandsInterface: GetLanguageInterface) {
+        apiService.getLanguages().enqueue(object : Callback<LanguageResponse> {
+            override fun onResponse(
+                call: Call<LanguageResponse>,
+                response: Response<LanguageResponse>
+            ) {
+                if (response.isSuccessful) {
+                    getAddCommandsInterface.onSuccess(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<LanguageResponse>, t: Throwable) {
+                getAddCommandsInterface.onFail(t.localizedMessage!!)
             }
 
         })

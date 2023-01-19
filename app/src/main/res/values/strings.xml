@@ -1,14 +1,46 @@
 <resources>
     <string name="app_name">TermCommandsAndroid</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_login"></string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_activity_login" translatable="false"></string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+
+    <!-- Menu -->
+    <string name="home">Home</string>
+    <string name="my_Commands">My Commands</string>
+    <string name="others">Others</string>
+
+    <!-- ToolbarText -->
+    <string name="home_search">Type command name or description</string>
+    <string name="home_title">Terminal Commands</string>
+
+    <!-- CommandDetailText -->
+    <string name="commmand_message">Type copied</string>
+    <string name="commmand_search">Type command name or description</string>
+    <string name="commmand_cancel">Cancel</string>
+    <string name="commmand_save">Save</string>
+    <string name="commmand_title">Command List Name</string>
+    <string name="commmand_hint">Exm: Terminal Commands</string>
+    <string name="commmand_btn">Add Command</string>
+    <string name="commmand_description">Command Description</string>
+    <string name="commmand_name">Command Name</string>
+
+
+    <!-- OthersText -->
+    <string name="others_title">Others</string>
+    <string name="others_language">Language</string>
+    <string name="others_notification">Notification</string>
+    <string name="others_language_choose">Please choose a language</string>
+
+    <!-- OthersText -->
+    <string name="error_title">Error</string>
+    <string name="error_command">Make sure all fıelds are fılled !</string>
+
+
 </resources>

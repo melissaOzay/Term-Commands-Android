@@ -27,4 +27,10 @@ interface RestApi {
 
     @GET("/api/list/{listId}")
     fun getCommandsDetail(@Path("listId") listId: String): Call<CommandDetailResponse>
+
+    @GET("api/languages")
+    fun getLanguages(): Call<LanguageResponse>
+
+
+
 }

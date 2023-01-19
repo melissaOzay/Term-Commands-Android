@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.SearchView
+import androidx.core.view.size
 import com.example.termcommandsandroid.databinding.ToolbarTextBinding
+
 
 class ToolbarText @JvmOverloads constructor(
     context: Context,
@@ -18,12 +20,13 @@ class ToolbarText @JvmOverloads constructor(
         LayoutInflater.from(context), this, true
     )
 
-    fun toolbarText(text: String) {
+    fun toolbarText(text:String) {
         binding.tvToolbar.setText(text)
     }
 
-    fun searchText(text: String) {
-        binding.searchView.queryHint = text.toString()
+    fun searchText(text:String) {
+        binding.searchView.queryHint = text
+            binding.searchView.width
 
     }
     fun searhVisibility(){

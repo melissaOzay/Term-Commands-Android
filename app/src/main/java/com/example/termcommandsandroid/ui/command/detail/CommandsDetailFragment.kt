@@ -8,13 +8,13 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mywords.utility.CommonUtility
+import com.example.termcommandsandroid.R
 import com.example.termcommandsandroid.base.BaseFragment
 import com.example.termcommandsandroid.databinding.FragmentCommandDetailBinding
 import com.example.termcommandsandroid.domain.entities.response.CommandDetailList
 import com.example.termcommandsandroid.ui.adapter.CommandDetailListener
 import com.example.termcommandsandroid.ui.adapter.CommandsDetailAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_categories.*
 import kotlinx.android.synthetic.main.fragment_command_detail.*
 import kotlin.collections.ArrayList
 
@@ -30,7 +30,7 @@ class CommandsDetailFragment : BaseFragment<FragmentCommandDetailBinding, Comman
 
             override fun copyToClipboard(title: CharSequence, command: CharSequence) {
                 CommonUtility.copyText(title, command, requireActivity())
-                Toast.makeText(requireContext(), "Type copied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.commmand_message, Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -47,7 +47,6 @@ class CommandsDetailFragment : BaseFragment<FragmentCommandDetailBinding, Comman
     override fun initUI() {
         super.initUI()
         categoriesDetail()
-        binding.toolbarText.searchText("Type command name or description")
         binding.toolbarText.toolbarText(args.commant)
         binding.toolbarText.searhVisibility()
         recyclerView = view.let { rvCommand }

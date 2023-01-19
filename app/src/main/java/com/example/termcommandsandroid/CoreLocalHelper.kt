@@ -21,6 +21,6 @@ interface CoreLocalHelper {
 
     fun getCurrentLocale(): String?
 
-
+    fun saveCurrentLocale(l:String)
 
 }

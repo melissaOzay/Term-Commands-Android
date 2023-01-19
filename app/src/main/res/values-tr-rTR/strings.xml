@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TermCommandsAndroid</string>
+    <string name="commmand_cancel">İptal</string>
+    <string name="home_title">Terminal Komutları</string>
+    <string name="commmand_message">Kopyalandı</string>
+    <string name="commmand_save">Kaydet</string>
+    <string name="others_notification">Bildirimler</string>
+    <string name="others_language">Dil</string>
+    <string name="my_Commands">Komutlarım</string>
+    <string name="home">Anasayfa</string>
+    <string name="others_title">Diğer</string>
+    <string name="commmand_search">Komut ismini veya açıklamasını giriniz</string>
+    <string name="home_search">Komut ismini veya açıklamasını giriniz</string>
+    <string name="commmand_name">Komut Adı</string>
+    <string name="commmand_title">Komut Liste Adı</string>
+    <string name="commmand_description">Komut Açıklaması</string>
+    <string name="commmand_btn">Komut Ekle</string>
+    <string name="others">Diğer</string>
+    <string name="others_language_choose">Lütfen dil seçiniz</string>
+    <string name="commmand_hint">Örn: Terminal Komutları</string>
+    <string name="error_title">Hata</string>
+    <string name="error_command">Bütün alanların dolu olduğundan emin olun !</string>
+</resources>

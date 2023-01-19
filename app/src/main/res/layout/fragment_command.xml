@@ -11,7 +11,7 @@
         android:layout_width="345dp"
         android:layout_height="58dp"
         android:layout_marginTop="40dp"
-        android:text="My Commands"
+        android:text="@string/my_Commands"
         android:textColor="#ffffff"
         android:textSize="34dp"
         android:textStyle="bold"

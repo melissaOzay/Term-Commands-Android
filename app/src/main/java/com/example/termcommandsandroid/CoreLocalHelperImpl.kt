@@ -6,12 +6,14 @@ import android.content.res.Resources
 import javax.inject.Inject
 
 class CoreLocalHelperImpl @Inject constructor(context: Context) : CoreLocalHelper {
-
     private val AUTHORIZATON_PREF_HELPER = "authorizationPref"
+    private val LANGUAGE = "LANGUAGE"
     lateinit var mPrefs: SharedPreferences
+    lateinit var mPref: SharedPreferences
 
     init {
         mPrefs = context.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        mPref = context.getSharedPreferences("Pref", Context.MODE_PRIVATE)
     }
 
     override fun saveAuthorizationToken(authorizationToken: String) {
@@ -23,7 +25,11 @@ class CoreLocalHelperImpl @Inject constructor(context: Context) : CoreLocalHelpe
     }
 
     override fun getCurrentLocale(): String? {
-        return Resources.getSystem().getConfiguration().locale.getLanguage()
+        return mPref.getString(LANGUAGE, "LANGUAGE")!!
+    }
+
+    override fun saveCurrentLocale(l: String) {
+        mPrefs.edit().putString(LANGUAGE, l).apply()
     }
 
 }

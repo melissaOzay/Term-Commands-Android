@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mywords.utility.CommonUtility
+import com.example.termcommandsandroid.R
 import com.example.termcommandsandroid.base.BaseFragment
 import com.example.termcommandsandroid.databinding.FragmentHomeBinding
 import com.example.termcommandsandroid.domain.entities.request.AccountsRequest
@@ -57,8 +58,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
     override fun initUI() {
         super.initUI()
         with(binding) {
-            toolbarText.searchText("Type command name or description")
-            toolbarText.toolbarText("Terminal Commands")
+            context?.let { toolbarText.searchText(it.getString(R.string.home_search)) }
+            context?.let { toolbarText.toolbarText(it.getString(R.string.home_title)) }
             toolbarText.search(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(p0: String): Boolean {
                     return false

@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mywords.utility.CommonUtility
+import com.example.termcommandsandroid.R
 import com.example.termcommandsandroid.base.BaseFragment
 import com.example.termcommandsandroid.databinding.FragmentCategoriesBinding
 import com.example.termcommandsandroid.domain.entities.response.CategoryDetailList
@@ -47,7 +48,7 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVM>
     override fun initUI() {
         super.initUI()
         categoriesDetail()
-        binding.toolbarText.searchText("Type command name or description")
+        context?.let { toolbarText.searchText(it.getString(R.string.home_search)) }
         binding.toolbarText.toolbarText(args.commant)
         recyclerView = view.let { rvCategories }
         recyclerView.adapter = recyclerViewAdapter

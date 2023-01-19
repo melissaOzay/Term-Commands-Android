@@ -25,7 +25,6 @@
         android:id="@+id/layout"
         android:layout_width="0dp"
         android:layout_height="280dp"
-        android:background="@drawable/bg_radius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,68 +33,13 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvPro"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#222833"
-            android:text="Pro"
-            android:paddingLeft="16dp"
-            android:paddingVertical="14dp"
-            android:textColor="@color/white"
-            android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-            tools:layout_editor_absoluteX="83dp"
-            tools:layout_editor_absoluteY="165dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/white" />
-        <TextView
-            android:id="@+id/tvRate"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:paddingLeft="16dp"
-            android:paddingVertical="14dp"
-            android:background="#222833"
-            android:text="Rate Comment"
-            android:textColor="@color/white"
-            android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-            tools:layout_editor_absoluteX="83dp"
-            tools:layout_editor_absoluteY="165dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/white" />
-        <TextView
-            android:id="@+id/tvSugges"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:paddingLeft="16dp"
-            android:paddingVertical="14dp"
-            android:background="#222833"
-            android:text="Suggestion"
-            android:textColor="@color/white"
-            android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-            tools:layout_editor_absoluteX="83dp"
-            tools:layout_editor_absoluteY="165dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/white" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="#1F2127" />
-        <TextView
             android:id="@+id/tvLanguage"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:paddingLeft="16dp"
             android:paddingVertical="14dp"
             android:background="#222833"
-            android:text="Language"
+            android:text="@string/others_language"
             android:textColor="@color/white"
             android:drawableRight="@drawable/ic_baseline_chevron_right_24"
             tools:layout_editor_absoluteX="83dp"
@@ -108,11 +52,11 @@
         <TextView
             android:id="@+id/tvNotification"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:paddingLeft="16dp"
             android:paddingVertical="14dp"
             android:background="#222833"
-            android:text="Notification"
+            android:text="@string/others_notification"
             android:textColor="@color/white"
             android:drawableRight="@drawable/ic_baseline_chevron_right_24"
             tools:layout_editor_absoluteX="83dp"

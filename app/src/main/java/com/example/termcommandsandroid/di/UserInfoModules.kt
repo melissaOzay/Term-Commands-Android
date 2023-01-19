@@ -44,6 +44,7 @@ object UserInfoModules {
                         .addHeader("Authorization", "Bearer ${localHelper.getAuthorizationToken()}")
                         .addHeader("app-language", "${localHelper.getCurrentLocale()}")
                         .build()
+                Log.e("nott","${localHelper.getCurrentLocale()}")
                 chain.proceed(request)
             })
             .addInterceptor(logging)

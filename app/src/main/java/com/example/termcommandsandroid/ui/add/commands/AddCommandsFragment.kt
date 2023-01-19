@@ -63,7 +63,11 @@ class AddCommandsFragment : BaseFragment<FragmentAddCommandsBinding, AddCommands
                 navigate(AddCommandsFragmentDirections.actionAddCommandsToCommandsFragment())
             }
         }
+        binding.tvCancel.setOnClickListener {
+            navigate(AddCommandsFragmentDirections.actionAddCommandsToCommandsFragment())
+        }
     }
+
 
     private fun subscribeFail() {
         viewModel.failer.observe(this.viewLifecycleOwner) {
