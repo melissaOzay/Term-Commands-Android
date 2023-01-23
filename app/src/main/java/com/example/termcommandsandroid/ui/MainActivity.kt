@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
      NavigationUI.setupWithNavController(navHostFragment,navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id == R.id.categoriesFragment) {
-                binding.bottomNavigation.visibility = View.GONE
+                binding.bottomNavigation.visibility = View.INVISIBLE
             } else {
 
                 binding.bottomNavigation.visibility = View.VISIBLE

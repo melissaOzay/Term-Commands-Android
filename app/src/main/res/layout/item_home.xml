@@ -23,7 +23,7 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivHome"
-        android:layout_width="170dp"
+        android:layout_width="180dp"
         android:layout_height="69dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"

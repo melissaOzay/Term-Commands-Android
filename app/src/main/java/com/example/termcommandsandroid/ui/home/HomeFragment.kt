@@ -115,11 +115,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
     @SuppressLint("HardwareIds")
     override fun onStart() {
         super.onStart()
-        val android_id = Settings.Secure.getString(
-            getContext()?.getContentResolver(),
-            Settings.Secure.ANDROID_ID
-        )
-        viewModel.account(AccountsRequest("a", "$android_id"))
         viewModel.getData()
     }
 

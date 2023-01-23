@@ -1,4 +1,4 @@
-package com.example.termcommandsandroid.ui.home
+package com.example.termcommandsandroid.spalash.screen
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,21 +16,18 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeVM @Inject constructor(
-    val categoriesUseCase: CategoriesUseCase,
-    val commandsUseCase: CommandUseCase
-
-) : BaseViewModel() {
-    val commandsListInfo = MutableLiveData<CategoryDetailResponse>()
-    val categoriesListInfo = MutableLiveData<CategoriesResponse>()
+class SplashVM @Inject constructor(
+    val accountUseCase: AccountUseCase
+) : ViewModel() {
+    val accountListInfo = MutableLiveData<AccountResponse>()
     val failer = MutableLiveData<String>()
-
-    fun getData() {
-        showLoading().equals(true)
-        categoriesUseCase.categories(object : CategoriesInterface {
-            override fun onSuccess(data: CategoriesResponse) {
-                hideLoading().equals(false)
-                categoriesListInfo.postValue(data)
+    private var loadingDialog: LoadingDialog? = null
+    fun account(accountRequest: AccountsRequest) {
+        loadingDialog?.showLoading()
+        accountUseCase.account(accountRequest, object : AccountInterface {
+            override fun onSuccess(data: AccountResponse) {
+                loadingDialog?.hideLoading()
+                accountListInfo.postValue(data)
             }
 
             override fun onFail(message: String) {
@@ -40,18 +37,4 @@ class HomeVM @Inject constructor(
         })
     }
 
-    fun search(query: String) {
-        showLoading().equals(true)
-        commandsUseCase.commands(query, object : CommandsInterface {
-            override fun onSuccess(data: CategoryDetailResponse) {
-                hideLoading().equals(false)
-                commandsListInfo.postValue(data)
-            }
-
-            override fun onFail(message: String) {
-                failer.postValue(message)
-            }
-
-        })
-    }
 }
